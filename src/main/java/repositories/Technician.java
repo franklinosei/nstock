@@ -5,6 +5,7 @@
 package repositories;
 
 import java.sql.Connection;
+import models.ItemsModel;
 
 /**
  *
@@ -30,8 +31,12 @@ public class Technician {
         }
     }
 
-    public void addItem() {
-        
+    public void addItem(ItemsModel item) {
+        try {
+            int result = manageItems.insertItem(item);
+        } catch (Exception e) {
+        }
+
     }
 
     public void updateItem() {

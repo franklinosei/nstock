@@ -11,77 +11,91 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import models.ItemsModel;
+import utils.Utils;
 
 /**
  *
  * @author iamdveloper
  */
 public class ItemDAO {
-
+    
     private Connection conn = null;
-
+    
     public ItemDAO(Connection conn) {
-
+        
         this.conn = conn;
     }
-
-//    TODO
+    
     public int insertItem(ItemsModel item) throws Exception {
-
+        
         try {
             // Insert query
-            String query = "INSERT INTO items (genre_name) VALUES (?)";
+            String query = "INSERT INTO items (name, description, faulty, typeID, photo, serialNumber, labID, managerID, specID, createdAt, updatedAt) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, item.getName());
-
+            stmt.setString(2, item.getDescription());
+            stmt.setBoolean(3, item.getFaulty());
+            stmt.setInt(4, item.getTypeID());
+            stmt.setString(5, item.getPhoto());
+            stmt.setString(6, item.getSerialNumber());
+            stmt.setInt(7, item.getLabID());
+            stmt.setInt(8, item.getManagerID());
+            stmt.setInt(9, item.getSpecID());
+            
+            String currentTime = Utils.getCurrentDateTime();
+            
+            stmt.setString(10, currentTime);
+            stmt.setString(11, currentTime);
+            
             int rowsAffected = stmt.executeUpdate();
-
+            
             return rowsAffected;
-
+            
         } catch (SQLException e) {
             throw new Exception(e.getMessage());
         }
-
+        
     }
-
-//    TODO
+    
     public int updateItem(ItemsModel item) throws Exception {
-
+        
         try {
             // Update data
-            String updateQuery = "UPDATE genres SET genre_name = ? WHERE genre_id = ?";
+            String updateQuery = "UPDATE items SET name = ?, description = ?, faulty = ?,  photo = ? WHERE itemID = ?;";
             PreparedStatement stmt = conn.prepareStatement(updateQuery);
             stmt.setString(1, item.getName());
-            stmt.setInt(2, item.getItemID());
-
+            stmt.setString(2, item.getDescription());
+            stmt.setBoolean(3, item.getFaulty());
+            stmt.setString(4, item.getPhoto());
+            stmt.setInt(5, item.getItemID());
+            
             int rowsAffected = stmt.executeUpdate();
             stmt.close();
             return rowsAffected;
-
-        } catch (SQLException e) {
-            throw new Exception(e.getMessage());
-        }
-    }
-
-//    TODO
-    public int deleteItem(ItemsModel item) throws Exception {
-
-        try {
-            // Update data
-            String updateQuery = "UPDATE items SET deleted = ? WHERE genre_id = ?";
-            PreparedStatement stmt = conn.prepareStatement(updateQuery);
-            stmt.setBoolean(1, item.isDeleted());
-            stmt.setInt(2, item.getItemID());
-
-            int rowsAffected = stmt.executeUpdate();
-            stmt.close();
-            return rowsAffected;
-
+            
         } catch (SQLException e) {
             throw new Exception(e.getMessage());
         }
     }
     
+    public int deleteItem(ItemsModel item) throws Exception {
+        
+        try {
+            // Update data
+            String updateQuery = "UPDATE items SET deleted = ? WHERE iteMID = ?";
+            PreparedStatement stmt = conn.prepareStatement(updateQuery);
+            stmt.setBoolean(1, item.isDeleted());
+            stmt.setInt(2, item.getItemID());
+            
+            int rowsAffected = stmt.executeUpdate();
+            stmt.close();
+            return rowsAffected;
+            
+        } catch (SQLException e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
 //TODO
 //    public ItemsModel getItemByID(int id) throws Exception {
 //
@@ -100,37 +114,42 @@ public class ItemDAO {
 //            throw new Exception(e.getMessage());
 //        }
 //    }
-
-//    TODO
     public ArrayList<ItemsModel> getAllItems() throws Exception {
-
+        
         try {
             ArrayList<ItemsModel> itemsList = new ArrayList<>();
             // Make query
-            String query = "SELECT genre_id, genre_name FROM genres";
+            String query = "SELECT * FROM items WHERE deleted = 0";
             Statement stmt = this.conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
-
+            
             while (rs.next()) {
-
-                String name = rs.getString("genre_name");
-                String dewscription = rs.getString("description");
                 
-                int id = rs.getInt("genre_id");
+                String name = rs.getString("name");
+                String description = rs.getString("description");
+                boolean faulty = rs.getBoolean("faulty");
+                int typeID = rs.getInt("typeID");
+                String serialNumber = rs.getString("serialNumber");
+                int labID = rs.getInt("labID");
+                int managerID = rs.getInt("managerID");
+                int specID = rs.getInt("specID");
+                String createdAt = rs.getString("createdAt");
+                String updatedAt = rs.getString("updatedAt");
+                int itemID = rs.getInt("itemID");
 
                 // TODO: Update the models to access attributes via constructor
-                ItemsModel item = new ItemsModel();
+                ItemsModel item = new ItemsModel(itemID, name, description, faulty, typeID, name, name, serialNumber, labID, managerID, specID, faulty);
                 itemsList.add(item);
             }
             
             stmt.close();
             rs.close();
             return itemsList;
-
+            
         } catch (SQLException e) {
             throw new Exception(e.getMessage());
         }
-
+        
     }
-
+    
 }
