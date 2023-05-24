@@ -70,7 +70,7 @@ public class ItemDAO {
             // Update data
             String updateQuery = "UPDATE items SET deleted = ? WHERE genre_id = ?";
             PreparedStatement stmt = conn.prepareStatement(updateQuery);
-            stmt.setBoolean(1, item.getDeleted());
+            stmt.setBoolean(1, item.isDeleted());
             stmt.setInt(2, item.getItemID());
 
             int rowsAffected = stmt.executeUpdate();
