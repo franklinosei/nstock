@@ -36,7 +36,6 @@ public class DB_Connection {
         } catch (SQLException e) {
             throw new Exception(e.getMessage());
         }
-
     }
 
     public static void closeConnection() throws Exception {
