@@ -10,7 +10,8 @@ package models;
  */
 import java.time.LocalDate;
 
-public class ManagersModel {
+
+public class TechnicianModel {
     private int managerID;
     private String firstName;
     private String lastName;
@@ -23,7 +24,25 @@ public class ManagersModel {
     private int roleID;
     private int labID;
 
-    // Getters and Setters
+    public TechnicianModel() {
+        // Default constructor
+    }
+
+    public TechnicianModel(int managerID, String firstName, String lastName, String gender, String phone, String email,
+            String address, LocalDate dob, String photo, int roleID, int labID) {
+        this.managerID = managerID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.dob = dob;
+        this.photo = photo;
+        this.roleID = roleID;
+        this.labID = labID;
+    }
+
     public int getManagerID() {
         return managerID;
     }

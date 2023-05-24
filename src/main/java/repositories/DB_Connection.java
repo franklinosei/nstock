@@ -15,9 +15,9 @@ import java.sql.SQLException;
 public class DB_Connection {
        private static Connection conn = null;
 
-    String password = "password";
+    String password = "123@Moako";
     String username = "root";
-    String url = "jdbc:mysql://localhost:3306/music?autoReconnect=true&useSSL=false";
+    String url = "jdbc:mysql://localhost:3306/nstock?autoReconnect=true&useSSL=false";
 
 //    private Statement stmt;
     public Connection connect() throws Exception {
