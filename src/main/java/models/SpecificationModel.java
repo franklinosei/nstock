@@ -8,13 +8,24 @@ package models;
  *
  * @author User
  */
-public class Specification {
+
+public class SpecificationModel {
     private int specID;
     private int ramSize;
     private int storageSize;
     private float screenSize;
 
-    // Getters and Setters
+    public SpecificationModel() {
+        // Default constructor
+    }
+
+    public SpecificationModel(int specID, int ramSize, int storageSize, float screenSize) {
+        this.specID = specID;
+        this.ramSize = ramSize;
+        this.storageSize = storageSize;
+        this.screenSize = screenSize;
+    }
+
     public int getSpecID() {
         return specID;
     }
@@ -47,4 +58,5 @@ public class Specification {
         this.screenSize = screenSize;
     }
 }
+
 //

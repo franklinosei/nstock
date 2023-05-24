@@ -8,6 +8,7 @@ package models;
  *
  * @author User
  */
+
 public class LabsModel {
     private int labID;
     private String labName;
@@ -15,7 +16,18 @@ public class LabsModel {
     private String region;
     private String photo;
 
-    // Getters and Setters
+    public LabsModel() {
+        // Default constructor
+    }
+
+    public LabsModel(int labID, String labName, String city, String region, String photo) {
+        this.labID = labID;
+        this.labName = labName;
+        this.city = city;
+        this.region = region;
+        this.photo = photo;
+    }
+
     public int getLabID() {
         return labID;
     }
@@ -56,4 +68,5 @@ public class LabsModel {
         this.photo = photo;
     }
 }
+
 //

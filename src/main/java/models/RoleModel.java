@@ -8,11 +8,20 @@ package models;
  *
  * @author User
  */
+
 public class RoleModel {
     private int roleID;
     private String roleName;
 
-    // Getters and Setters
+    public RoleModel() {
+        // Default constructor
+    }
+
+    public RoleModel(int roleID, String roleName) {
+        this.roleID = roleID;
+        this.roleName = roleName;
+    }
+
     public int getRoleID() {
         return roleID;
     }
@@ -29,3 +38,4 @@ public class RoleModel {
         this.roleName = roleName;
     }
 }
+
