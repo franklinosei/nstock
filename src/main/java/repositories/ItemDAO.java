@@ -25,6 +25,7 @@ public class ItemDAO {
         this.conn = conn;
     }
 
+//    TODO
     public int insertItem(ItemsModel item) throws Exception {
 
         try {
@@ -43,6 +44,7 @@ public class ItemDAO {
 
     }
 
+//    TODO
     public int updateItem(ItemsModel item) throws Exception {
 
         try {
@@ -60,8 +62,9 @@ public class ItemDAO {
             throw new Exception(e.getMessage());
         }
     }
-    
-        public int deleteItem(ItemsModel item) throws Exception {
+
+//    TODO
+    public int deleteItem(ItemsModel item) throws Exception {
 
         try {
             // Update data
@@ -78,7 +81,8 @@ public class ItemDAO {
             throw new Exception(e.getMessage());
         }
     }
-
+    
+//TODO
 //    public ItemsModel getItemByID(int id) throws Exception {
 //
 //        try {
@@ -97,8 +101,7 @@ public class ItemDAO {
 //        }
 //    }
 
-    
-    
+//    TODO
     public ArrayList<ItemsModel> getAllItems() throws Exception {
 
         try {
@@ -111,12 +114,15 @@ public class ItemDAO {
             while (rs.next()) {
 
                 String name = rs.getString("genre_name");
+                String dewscription = rs.getString("description");
+                
                 int id = rs.getInt("genre_id");
 
-            // TODO: Update the models to access attributes via constructor
+                // TODO: Update the models to access attributes via constructor
                 ItemsModel item = new ItemsModel();
                 itemsList.add(item);
             }
+            
             stmt.close();
             rs.close();
             return itemsList;
