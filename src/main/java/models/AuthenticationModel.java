@@ -6,12 +6,23 @@ package models;
 
 /**
  *
- * @author User
+ * @author bright
  */
+
 public class AuthenticationModel {
     private int id;
     private String email;
     private String password;
+
+    public AuthenticationModel() {
+        // Default constructor
+    }
+
+    public AuthenticationModel(int id, String email, String password) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+    }
 
     // Getters and Setters
     public int getId() {
@@ -38,5 +49,3 @@ public class AuthenticationModel {
         this.password = password;
     }
 }
-
-//

@@ -8,9 +8,19 @@ package models;
  *
  * @author User
  */
+
 public class ItemTypeModel {
     private int typeID;
     private String typeName;
+
+    public ItemTypeModel() {
+        // Default constructor
+    }
+
+    public ItemTypeModel(int typeID, String typeName) {
+        this.typeID = typeID;
+        this.typeName = typeName;
+    }
 
     // Getters and Setters
     public int getTypeID() {
@@ -29,4 +39,3 @@ public class ItemTypeModel {
         this.typeName = typeName;
     }
 }
-//

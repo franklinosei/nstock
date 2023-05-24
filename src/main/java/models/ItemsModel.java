@@ -8,8 +8,8 @@ package models;
  *
  * @author User
  */
-public class ItemsModel {
 
+public class ItemsModel {
     private int itemID;
     private String name;
     private String description;
@@ -23,7 +23,25 @@ public class ItemsModel {
     private int specID;
     private boolean deleted;
 
-    // Getters and Setters
+    public ItemsModel() {
+        // Default constructor
+    }
+
+    public ItemsModel(int itemID, String name, String description, Boolean faulty, int typeID, String itemscol, String photo, String serialNumber, int labID, int managerID, int specID, boolean deleted) {
+        this.itemID = itemID;
+        this.name = name;
+        this.description = description;
+        this.faulty = faulty;
+        this.typeID = typeID;
+        this.itemscol = itemscol;
+        this.photo = photo;
+        this.serialNumber = serialNumber;
+        this.labID = labID;
+        this.managerID = managerID;
+        this.specID = specID;
+        this.deleted = deleted;
+    }
+
     public int getItemID() {
         return itemID;
     }
@@ -112,12 +130,11 @@ public class ItemsModel {
         this.specID = specID;
     }
 
-    public void setDeleted(boolean isDeleted) {
-        this.deleted = isDeleted;
+    public boolean isDeleted() {
+        return deleted;
     }
 
-    public boolean getDeleted() {
-        return this.deleted;
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }
-//
