@@ -53,7 +53,7 @@ public class LabDAO {
 
     }
 
-//TODO
+
     public int updateLab(LabsModel lab) throws Exception {
 
         try {
@@ -79,12 +79,11 @@ public class LabDAO {
         }
     }
 
-//    TODO
-    public int deleteItem(LabsModel lab) throws Exception {
+    public int deleteLab(LabsModel lab) throws Exception {
 
         try {
             // Update data
-            String updateQuery = "UPDATE items SET deleted = ? WHERE labID = ?";
+            String updateQuery = "UPDATE labs SET deleted = ? WHERE labID = ?";
             PreparedStatement stmt = conn.prepareStatement(updateQuery);
             stmt.setBoolean(1, true);
             stmt.setInt(2, lab.getLabID());
@@ -98,23 +97,28 @@ public class LabDAO {
         }
     }
 
-//    TODO
+
     public ArrayList<LabsModel> getAllLabs() throws Exception {
 
         try {
             ArrayList<LabsModel> labsList = new ArrayList<>();
             // Make query
-            String query = "SELECT * FROM labs";
+            String query = "SELECT * FROM labs WHERE deleted = 0";
             Statement stmt = this.conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
             while (rs.next()) {
 
-                String name = rs.getString("genre_name");
-                int id = rs.getInt("genre_id");
+                String name = rs.getString("labName");
+                String city = rs.getString("city");
+                String region = rs.getString("regioin");
+                String photo = rs.getString("photo");
+                String createdAt = rs.getString("createdAt");
+                String updatedAt = rs.getString("updatedAt");
+                int id = rs.getInt("labID");
 
                 // TODO: Update the models to access attributes via constructor
-                LabsModel lab = new LabsModel();
+                LabsModel lab = new LabsModel(id, name, city, region, photo);
                 labsList.add(lab);
             }
             stmt.close();

@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import models.ManagersModel;
+import models.TechnicianModel;
 
 /**
  *
@@ -27,7 +27,7 @@ public class TechnicianDAO {
     
     
 //    TODO
-    public int insertTechnician(ManagersModel technician) throws Exception {
+    public int insertTechnician(TechnicianModel technician) throws Exception {
 
         try {
             // Insert query
@@ -45,7 +45,7 @@ public class TechnicianDAO {
 
     }
 //TODO
-    public int updateTechnician(ManagersModel technician) throws Exception {
+    public int updateTechnician(TechnicianModel technician) throws Exception {
 
         try {
             // Update data
@@ -64,7 +64,7 @@ public class TechnicianDAO {
     }
 //TODO
     
-    public int deleteItem(ManagersModel technician) throws Exception {
+    public int deleteItem(TechnicianModel technician) throws Exception {
 
         try {
             // Update data
@@ -84,10 +84,10 @@ public class TechnicianDAO {
 
     
 //    TODO
-    public ArrayList<ManagersModel> getAllTechnicians() throws Exception {
+    public ArrayList<TechnicianModel> getAllTechnicians() throws Exception {
 
         try {
-            ArrayList<ManagersModel> techniciansList = new ArrayList<>();
+            ArrayList<TechnicianModel> techniciansList = new ArrayList<>();
             // Make query
             String query = "SELECT genre_id, genre_name FROM genres";
             Statement stmt = this.conn.createStatement();
@@ -99,7 +99,7 @@ public class TechnicianDAO {
                 int id = rs.getInt("genre_id");
 
                 // TODO: Update the models to access attributes via constructor
-                ManagersModel lab = new ManagersModel();
+                TechnicianModel lab = new TechnicianModel();
                 techniciansList.add(lab);
             }
             stmt.close();
