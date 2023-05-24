@@ -9,6 +9,7 @@ package models;
  * @author User
  */
 public class ItemsModel {
+
     private int itemID;
     private String name;
     private String description;
@@ -20,6 +21,7 @@ public class ItemsModel {
     private int labID;
     private int managerID;
     private int specID;
+    private boolean deleted;
 
     // Getters and Setters
     public int getItemID() {
@@ -108,6 +110,14 @@ public class ItemsModel {
 
     public void setSpecID(int specID) {
         this.specID = specID;
+    }
+
+    public void setDeleted(boolean isDeleted) {
+        this.deleted = isDeleted;
+    }
+
+    public boolean getDeleted() {
+        return this.deleted;
     }
 }
 //
