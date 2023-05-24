@@ -22,6 +22,11 @@
             <version>${jakartaee}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>1</groupId>
+            <artifactId>1</artifactId>
+            <version>1</version>
+        </dependency>
     </dependencies>
     
     <build>
