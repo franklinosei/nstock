@@ -5,9 +5,11 @@
 package repositories;
 
 import java.sql.Connection;
+
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import models.ItemsModel;
 
 /**
@@ -35,10 +37,12 @@ public class Technician {
     }
 //add items
 
+
     public int addItem(ItemsModel item) throws Exception {
         try {
             int rowsAffected = manageItems.insertItem(item);
             return rowsAffected;
+
 
         } catch (Exception ex) {
             throw new Exception("An error occurred while adding the item.", ex);
