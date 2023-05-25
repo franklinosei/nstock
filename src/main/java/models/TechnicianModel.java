@@ -8,6 +8,7 @@ package models;
  *
  * @author User
  */
+import java.util.Date;
 import java.time.LocalDate;
 
 
@@ -19,7 +20,7 @@ public class TechnicianModel {
     private String phone;
     private String email;
     private String address;
-    private LocalDate dob;
+    private Date dob;
     private String photo;
     private int roleID;
     private int labID;
@@ -29,7 +30,7 @@ public class TechnicianModel {
     }
 
     public TechnicianModel(int managerID, String firstName, String lastName, String gender, String phone, String email,
-            String address, LocalDate dob, String photo, int roleID, int labID) {
+            String address, Date dob, String photo, int roleID, int labID) {
         this.managerID = managerID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -99,11 +100,11 @@ public class TechnicianModel {
         this.address = address;
     }
 
-    public LocalDate getDob() {
+    public Date getDob() {
         return dob;
     }
 
-    public void setDob(LocalDate dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 

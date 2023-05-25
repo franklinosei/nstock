@@ -10,7 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import models.TechnicianModel;
+import utils.Utils;
 
 /**
  *
@@ -24,16 +26,28 @@ public class TechnicianDAO {
 
         this.conn = conn;
     }
-    
-    
-//    TODO
+
     public int insertTechnician(TechnicianModel technician) throws Exception {
 
         try {
             // Insert query
-            String query = "INSERT INTO items (genre_name) VALUES (?)";
+            String query = "INSERT INTO managers (firstName, lastName, gender, phone, email, address, dob, photo, roleID, labID, createdAt, updatedAt) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, technician.getEmail());
+            stmt.setString(1, technician.getFirstName());
+            stmt.setString(2, technician.getLastName());
+            stmt.setString(3, technician.getGender());
+            stmt.setString(4, technician.getPhone());
+            stmt.setString(5, technician.getEmail());
+            stmt.setString(6, technician.getAddress());
+            stmt.setDate(7, (java.sql.Date) technician.getDob());
+            stmt.setString(8, technician.getPhoto());
+            stmt.setInt(9, technician.getRoleID());
+            stmt.setInt(10, technician.getLabID());
+
+            String currentTime = Utils.getCurrentDateTime();
+
+            stmt.setString(11, currentTime);
+            stmt.setString(12, currentTime);
 
             int rowsAffected = stmt.executeUpdate();
 
@@ -44,15 +58,27 @@ public class TechnicianDAO {
         }
 
     }
-//TODO
+
     public int updateTechnician(TechnicianModel technician) throws Exception {
 
         try {
             // Update data
-            String updateQuery = "UPDATE genres SET genre_name = ? WHERE genre_id = ?";
+            String updateQuery = "UPDATE managers SET firstName = ?, lastName = ?, gender = ?,phone =?, email = ?, address = ?,dob = ?,photo = ?, updatedAt = ? WHERE managerID = ?";
             PreparedStatement stmt = conn.prepareStatement(updateQuery);
-            stmt.setString(1, technician.getLastName());
-            stmt.setInt(2, technician.getLabID());
+
+            stmt.setString(1, technician.getFirstName());
+            stmt.setString(2, technician.getLastName());
+            stmt.setString(3, technician.getGender());
+            stmt.setString(4, technician.getPhone());
+            stmt.setString(5, technician.getEmail());
+            stmt.setString(6, technician.getAddress());
+            stmt.setDate(7, (java.sql.Date) technician.getDob());
+            stmt.setString(8, technician.getPhoto());
+
+            String currentTime = Utils.getCurrentDateTime();
+
+            stmt.setString(9, currentTime);
+            stmt.setInt(10, technician.getManagerID());
 
             int rowsAffected = stmt.executeUpdate();
             stmt.close();
@@ -62,16 +88,15 @@ public class TechnicianDAO {
             throw new Exception(e.getMessage());
         }
     }
-//TODO
-    
-    public int deleteItem(TechnicianModel technician) throws Exception {
+
+    public int deleteTechnician(TechnicianModel technician) throws Exception {
 
         try {
             // Update data
-            String updateQuery = "UPDATE items SET deleted = ? WHERE genre_id = ?";
+            String updateQuery = "UPDATE managers SET deleted = 1 WHERE managerID = ?";
             PreparedStatement stmt = conn.prepareStatement(updateQuery);
 //            stmt.setBoolean(1, lab.getDeleted());
-            stmt.setInt(2, technician.getLabID());
+            stmt.setInt(2, technician.getManagerID());
 
             int rowsAffected = stmt.executeUpdate();
             stmt.close();
@@ -82,24 +107,31 @@ public class TechnicianDAO {
         }
     }
 
-    
-//    TODO
     public ArrayList<TechnicianModel> getAllTechnicians() throws Exception {
 
         try {
             ArrayList<TechnicianModel> techniciansList = new ArrayList<>();
             // Make query
-            String query = "SELECT genre_id, genre_name FROM genres";
+            String query = "SELECT * FROM managers WHERE deleted = 0";
             Statement stmt = this.conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
             while (rs.next()) {
 
-                String name = rs.getString("genre_name");
-                int id = rs.getInt("genre_id");
+                String firstName = rs.getString("firstName");
+                String lastName = rs.getString("lastName");
+                String gender = rs.getString("gender");
+                String phone = rs.getString("phone");
+                String email = rs.getString("email");
+                String address = rs.getString("address");
+                Date dob = rs.getDate("dob");
+                String photo = rs.getString("photo");
+                String roleID = rs.getString("roleID");
+                String labID = rs.getString("labID");
+                int managerID = rs.getInt("managerID");
 
                 // TODO: Update the models to access attributes via constructor
-                TechnicianModel lab = new TechnicianModel();
+                TechnicianModel lab = new TechnicianModel(managerID, firstName, lastName, gender, phone, email, address, dob, photo, managerID, managerID);
                 techniciansList.add(lab);
             }
             stmt.close();

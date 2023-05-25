@@ -5,6 +5,7 @@
 package repositories;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import models.ItemsModel;
 
 /**
@@ -30,25 +31,56 @@ public class Technician {
             System.out.println(e.getMessage());
         }
     }
+//add items
 
-    public void addItem(ItemsModel item) {
+    public int addItem(ItemsModel item) throws Exception {
         try {
-            int result = manageItems.insertItem(item);
-        } catch (Exception e) {
+            int rowsAffected = manageItems.insertItem(item);
+            return rowsAffected;
+
+        } catch (Exception ex) {
+            throw new Exception("An error occurred while adding the item.", ex);
         }
+    }
+//update item
 
+    public int updateItem(ItemsModel item) throws Exception {
+        try {
+            int rowsAffected = manageItems.updateItem(item);
+            return rowsAffected;
+        } catch (Exception ex) {
+            throw new Exception("An error occured while updating the item", ex);
+        }
     }
 
-    public void updateItem() {
+//delete item
+    public int deleteItem(ItemsModel item) throws Exception {
+        try {
+            int rowsAffected = manageItems.deleteItem(item);
+            return rowsAffected;
+        } catch (Exception ex) {
+            throw new Exception("Error occurred while deleting the item", ex);
+        }
     }
 
-    public void deleteItem() {
-    }
+    //fetch one item
+//    public int getItem(ItemsModel item)throws Exception {
+//        try{
+//            int rowsAffected = manageItems.getItemID();
+//            return rowsAffected;
+//        }catch(Exception ex){
+//            throw new Exception("Error occured while fetching items", ex);
+//        }
+//    }
+    //fetch all items
+    public ArrayList<ItemsModel> getAllItems(ItemsModel item) throws Exception {
+        try {
+            ArrayList<ItemsModel> itemsList = manageItems.getAllItems();
+            return itemsList;
+        } catch (Exception ex) {
+            throw new Exception("Error occurred while deleting the item", ex);
 
-    public void getItem() {
-    }
-
-    public void getAllItems() {
+        }
     }
 
 }
