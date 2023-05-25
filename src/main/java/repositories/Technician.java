@@ -32,11 +32,11 @@ public class Technician {
         }
     }
 //add items
-
     public int addItem(ItemsModel item) throws Exception {
         try {
             int rowsAffected = manageItems.insertItem(item);
             return rowsAffected;
+
 
         } catch (Exception ex) {
             throw new Exception("An error occurred while adding the item.", ex);
