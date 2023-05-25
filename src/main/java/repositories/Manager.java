@@ -5,6 +5,9 @@
 package repositories;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import models.LabsModel;
+import models.TechnicianModel;
 
 /**
  *
@@ -33,32 +36,86 @@ public class Manager extends Technician {
     }
 
 //    Labs
-    public void addLab() {
+    public int addLab(LabsModel lab) throws Exception {
+        try {
+            int rowsAffected = manageLabs.insertLab(lab);
+            return rowsAffected;
+
+        } catch (Exception ex) {
+            throw new Exception("An error occurred while adding the lab.", ex);
+        }
     }
 
-    public void updateLab() {
+    public int updateLab(LabsModel lab) throws Exception {
+        try {
+            int rowsAffected = manageLabs.updateLab(lab);
+            return rowsAffected;
+        } catch (Exception ex) {
+            throw new Exception("An error occured while updating the item", ex);
+        }
     }
 
-    public void deleteLab() {
+    public int deleteLab(LabsModel lab) throws Exception {
+        try {
+            int rowsAffected = manageLabs.deleteLab(lab);
+            return rowsAffected;
+        } catch (Exception ex) {
+            throw new Exception("An error occured while updating the item", ex);
+        }
     }
 
-    public void viewLab() {
+//    public void viewLab() {
+//    }
+    public ArrayList<LabsModel> getAllLabs() throws Exception {
+        try {
+            ArrayList<LabsModel> labsList = manageLabs.getAllLabs();
+            return labsList;
+        } catch (Exception ex) {
+            throw new Exception("Error occurred while deleting the item", ex);
+
+        }
     }
-    
-    public void getAllLabs() {}
 
 //    Technicians
-    public void addTechnician() {
+    public int addTechnician(TechnicianModel techie) throws Exception {
+        try {
+            int rowsAffected = manageTechnicians.insertTechnician(techie);
+            return rowsAffected;
+
+        } catch (Exception ex) {
+            throw new Exception("An error occurred while adding the lab.", ex);
+        }
     }
 
-    public void updateTechnician() {
+    public int updateTechnician(TechnicianModel techie) throws Exception {
+        try {
+            int rowsAffected = manageTechnicians.insertTechnician(techie);
+            return rowsAffected;
+
+        } catch (Exception ex) {
+            throw new Exception("An error occurred while adding the lab.", ex);
+        }
     }
 
-    public void deleteTechnician() {
+    public int deleteTechnician(TechnicianModel techie) throws Exception {
+        try {
+            int rowsAffected = manageTechnicians.deleteTechnician(techie);
+            return rowsAffected;
+        } catch (Exception ex) {
+            throw new Exception("An error occured while updating the item", ex);
+        }
     }
 
-    public void getTechnician() {
+//    public void getTechnician() {
+//    }
+    public ArrayList<TechnicianModel> getAllTechnicians() throws Exception {
+        try {
+            ArrayList<TechnicianModel> techsList = manageTechnicians.getAllTechnicians();
+            return techsList;
+        } catch (Exception ex) {
+            throw new Exception("Error occurred while deleting the item", ex);
+
+        }
     }
-    
-    public void getAllTechnicians() {}
+
 }
