@@ -4,6 +4,7 @@
  */
 package utils;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -22,5 +23,18 @@ public class Utils {
         // Format the LocalDateTime object to the desired format
         String formattedDateTime = now.format(formatter);
         return formattedDateTime;
+    }
+
+    public static String hashPassword(String password) {
+        BCrypt.Hasher hasher = BCrypt.withDefaults();
+        String hashedPassword = hasher.hashToString(12, password.toCharArray());
+        return hashedPassword;
+    }
+
+    // Method to compare a password with a hashed password
+    public static boolean comparePasswords(String password, String hashedPassword) {
+        BCrypt.Verifyer verifyer = BCrypt.verifyer();
+        BCrypt.Result result = verifyer.verify(password.toCharArray(), hashedPassword);
+        return result.verified;
     }
 }

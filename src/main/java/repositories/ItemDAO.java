@@ -114,6 +114,41 @@ public class ItemDAO {
 //            throw new Exception(e.getMessage());
 //        }
 //    }
+    
+//    public ItemsModel findItemByID(int id) throws Exception {
+//
+//        ItemsModel foundData = null;
+//
+//        try {
+//            // Make query
+//            String query = "SELECT id, email, password FROM authentication WHERE email = ?";
+//            PreparedStatement stmt = conn.prepareStatement(query);
+//            stmt.setString(1, email);
+//            ResultSet rs = stmt.executeQuery(query);
+//
+//            while (rs.next()) {
+////  Change this to use the technician model
+//                String authEmail = rs.getString("email");
+//                int id = rs.getInt("genre_id");
+//                String authPassword = rs.getString("password");
+//                foundData = new ItemsModel();
+//
+//                foundData.setEmail(authEmail);
+//                foundData.setPassword(authPassword);
+//                foundData.setId(id);
+//            }
+//
+//            stmt.close();
+//            rs.close();
+//
+//            return foundData;
+//
+//        } catch (SQLException e) {
+//            throw new Exception(e.getMessage());
+//        }
+//    }
+//    
+    
     public ArrayList<ItemsModel> getAllItems() throws Exception {
         
         try {

@@ -23,9 +23,15 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>1</groupId>
-            <artifactId>1</artifactId>
-            <version>1</version>
+            <groupId>at.favre.lib</groupId>
+            <artifactId>bcrypt</artifactId>
+            <version>0.10.2</version>
+            <classifier>optimized</classifier>
+        </dependency>
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.0.33</version>
         </dependency>
     </dependencies>
     
