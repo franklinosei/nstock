@@ -9,13 +9,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
         <title>NStock</title>
 
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
         <!-- Local CSS -->
-        <link rel="stylesheet" type="text/css" href="../assets/styles/styles.css" >
+        <link rel="stylesheet" type="text/css" href="./assets/styles/styles.css" >
         
         <!--Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,7 +32,7 @@
             <jsp:include page="${contentName}" flush="true"></jsp:include>
         </div>
 
-        <script src="../assets/js/script.js"></scrip>
+        <script src="./assets/js/script.js"></scrip>
 
        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 

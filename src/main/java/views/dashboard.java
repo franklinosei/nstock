@@ -31,7 +31,7 @@ public class dashboard extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        RequestDispatcher rd = request.getRequestDispatcher("/templates/base.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("base.jsp");
         request.setAttribute("contentName", "dashboard.jsp");
         rd.forward(request, response);
     }
