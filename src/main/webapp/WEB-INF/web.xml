@@ -24,6 +24,10 @@
         <servlet-name>technician</servlet-name>
         <servlet-class>views.technician</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>newLab</servlet-name>
+        <servlet-class>views.newLab</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dashboard</servlet-name>
         <url-pattern>/dashboard</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>technician</servlet-name>
         <url-pattern>/technician</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>newLab</servlet-name>
+        <url-pattern>/newLab</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

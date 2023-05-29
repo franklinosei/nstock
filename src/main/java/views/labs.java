@@ -34,7 +34,7 @@ public class labs extends HttpServlet {
             request.setAttribute("contentName", "labList.jsp");
 
             // Forward the request to the labs.jsp for displaying the list
-            request.getRequestDispatcher("labList.jsp").forward(request, response);
+            request.getRequestDispatcher("base.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace(); // Print the full stack trace
             response.getWriter().println("An error occurred: " + e.getMessage()); // Print the error message
