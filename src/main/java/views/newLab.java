@@ -4,7 +4,10 @@
  */
 package views;
 
+import jakarta.servlet.RequestDispatcher;
+
 import controllers.DB_Connection;
+
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -18,7 +21,14 @@ public class newLab extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        response.setContentType("text/html;charset=UTF-8");
+
+        RequestDispatcher rd = request.getRequestDispatcher("base.jsp");
+
+//        Content name to display
+        request.setAttribute("contentName", "newLab.jsp");
+//        rd.forward(request, response);
+
         // Handle POST request to add a new lab
         if (request.getMethod().equalsIgnoreCase("POST")) {
             String labName = request.getParameter("labName");
@@ -55,6 +65,7 @@ public class newLab extends HttpServlet {
             // Render the form to add a new lab
             request.getRequestDispatcher("newLab.jsp").forward(request, response);
         }
+
     }
 
     @Override

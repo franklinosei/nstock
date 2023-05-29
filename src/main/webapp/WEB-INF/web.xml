@@ -5,12 +5,16 @@
         <servlet-class>views.dashboard</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>stock</servlet-name>
-        <servlet-class>views.stock</servlet-class>
+        <servlet-name>report</servlet-name>
+        <servlet-class>views.report</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>item</servlet-name>
-        <servlet-class>views.item</servlet-class>
+        <servlet-name>profile</servlet-name>
+        <servlet-class>views.profile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>items</servlet-name>
+        <servlet-class>views.items</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>labs</servlet-name>
@@ -20,25 +24,21 @@
         <servlet-name>technician</servlet-name>
         <servlet-class>views.technician</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>newLab</servlet-name>
-        <servlet-class>views.newLab</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>newTechnician</servlet-name>
-        <servlet-class>views.newTechnician</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>dashboard</servlet-name>
         <url-pattern>/dashboard</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>stock</servlet-name>
-        <url-pattern>/stock</url-pattern>
+        <servlet-name>report</servlet-name>
+        <url-pattern>/report</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>item</servlet-name>
-        <url-pattern>/item</url-pattern>
+        <servlet-name>profile</servlet-name>
+        <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>items</servlet-name>
+        <url-pattern>/items</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>labs</servlet-name>
@@ -47,14 +47,6 @@
     <servlet-mapping>
         <servlet-name>technician</servlet-name>
         <url-pattern>/technician</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>newLab</servlet-name>
-        <url-pattern>/newLab</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>newTechnician</servlet-name>
-        <url-pattern>/newTechnician</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

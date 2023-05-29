@@ -46,7 +46,7 @@
 
                 <!-- Main Content -->
                 <div id="content">
-                    <%@ include file="navbar.jsp"%>
+                    <%--<%@ include file="navbar.jsp"%>--%>
 
 
                     <!-- Begin Page Content -->

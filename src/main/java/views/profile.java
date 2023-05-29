@@ -6,6 +6,7 @@ package views;
 
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author iamdveloper
  */
-public class stock extends HttpServlet {
+public class profile extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,11 +29,10 @@ public class stock extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+               response.setContentType("text/html;charset=UTF-8");
+
         RequestDispatcher rd = request.getRequestDispatcher("base.jsp");
-        
-        request.setAttribute("contentName", "stock.jsp");
-        
+        request.setAttribute("contentName", "profile.jsp");
         rd.forward(request, response);
     }
 

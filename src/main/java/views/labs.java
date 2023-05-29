@@ -30,6 +30,9 @@ public class labs extends HttpServlet {
             // Set the list of labs as a request attribute
             request.setAttribute("labs", labsList);
 
+//            Set content to display name
+            request.setAttribute("contentName", "labList.jsp");
+
             // Forward the request to the labs.jsp for displaying the list
             request.getRequestDispatcher("labList.jsp").forward(request, response);
         } catch (Exception e) {
@@ -47,12 +50,17 @@ public class labs extends HttpServlet {
         }
     }
 
+    
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
+    
+    
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -79,7 +87,9 @@ public class labs extends HttpServlet {
 
                     // Set the updated lab as a request attribute
                     request.setAttribute("lab", lab);
-
+                    
+//                    Content to display name
+                    request.setAttribute("contentName", "editLab.jsp");
                     // Forward the request to the editLab.jsp for displaying the updated lab
                     request.getRequestDispatcher("editLab.jsp").forward(request, response);
                 } else {
