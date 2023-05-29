@@ -6,7 +6,6 @@ package views;
 
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,7 +29,7 @@ public class stock extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        RequestDispatcher rd = request.getRequestDispatcher("/templates/base.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("base.jsp");
         
         request.setAttribute("contentName", "stock.jsp");
         
