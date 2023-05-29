@@ -12,6 +12,18 @@
         <servlet-name>profile</servlet-name>
         <servlet-class>views.profile</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>items</servlet-name>
+        <servlet-class>views.items</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>labs</servlet-name>
+        <servlet-class>views.labs</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>technician</servlet-name>
+        <servlet-class>views.technician</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dashboard</servlet-name>
         <url-pattern>/dashboard</url-pattern>
@@ -23,6 +35,18 @@
     <servlet-mapping>
         <servlet-name>profile</servlet-name>
         <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>items</servlet-name>
+        <url-pattern>/items</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>labs</servlet-name>
+        <url-pattern>/labs</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>technician</servlet-name>
+        <url-pattern>/technician</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -6,7 +6,6 @@ package views;
 
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,8 +29,7 @@ public class technician extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-               response.setContentType("text/html;charset=UTF-8");
-        
+
         RequestDispatcher rd = request.getRequestDispatcher("base.jsp");
         request.setAttribute("contentName", "technician.jsp");
         rd.forward(request, response);

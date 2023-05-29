@@ -4,4 +4,4 @@
     Author     : iamdveloper
 --%>
 
-<h2>Employees Page</h2>
+<h2>Technicians Page</h2>
