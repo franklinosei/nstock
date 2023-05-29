@@ -20,7 +20,7 @@
 
     <!-- Nav Item - Item Management -->
     <li class="nav-item">
-        <a class="nav-link" href="/nstock/stock">
+        <a class="nav-link" href="/nstock/items">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Item Management</span>
         </a>
@@ -36,9 +36,9 @@
 
     <!-- Nav Item - Employee Management -->
     <li class="nav-item">
-        <a class="nav-link" href="/nstock/employee">
+        <a class="nav-link" href="/nstock/technician">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Employee Management</span>
+            <span>Technician Management</span>
         </a>
     </li>
 
