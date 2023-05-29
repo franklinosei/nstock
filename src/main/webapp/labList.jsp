@@ -1,6 +1,6 @@
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<div>
 <h1>List of Labs</h1>
 <table>
     <tr>
@@ -20,4 +20,5 @@
         </tr>
     </c:forEach>
 </table>
+</div>>
 
