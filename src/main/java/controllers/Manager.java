@@ -6,6 +6,7 @@ package controllers;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.List;
 import models.LabsModel;
 import models.TechnicianModel;
 import repositories.LabDAO;
@@ -68,9 +69,9 @@ public class Manager extends Technician {
 
 //    public void viewLab() {
 //    }
-    public ArrayList<LabsModel> getAllLabs() throws Exception {
+    public List<LabsModel> getAllLabs() throws Exception {
         try {
-            ArrayList<LabsModel> labsList = manageLabs.getAllLabs();
+            List<LabsModel> labsList = manageLabs.getAllLabs();
             return labsList;
         } catch (Exception ex) {
             throw new Exception("Error occurred while deleting the item", ex);
