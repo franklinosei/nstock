@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import models.AuthenticationModel;
 
 /**
@@ -42,34 +43,45 @@ public class AuthDAO {
 
     }
 
-
     public AuthenticationModel findUserByEmail(String email) throws Exception {
 
         AuthenticationModel foundData = null;
 
         try {
             // Make query
-            String query = "SELECT id, email, password FROM authentication WHERE email = ?";
-            PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, email);
+            String query = "SELECT * FROM authentication WHERE email='" + email + "'";
+            Statement stmt = conn.createStatement();
+
+//            PreparedStatement stmt = this.conn.prepareStatement(query);
+//            stmt.setString(1, email);
+//            
+//                   System.out.println(query);
             ResultSet rs = stmt.executeQuery(query);
 
-            while (rs.next()) {
-//  Change this to use the technician model
+            if (rs.next()) {
                 String authEmail = rs.getString("email");
-                int id = rs.getInt("genre_id");
+                int id = rs.getInt("id");
                 String authPassword = rs.getString("password");
+                
+                 System.out.println(authPassword);
+
                 foundData = new AuthenticationModel();
 
                 foundData.setEmail(authEmail);
                 foundData.setPassword(authPassword);
                 foundData.setId(id);
+
+                stmt.close();
+                rs.close();
+
+                return foundData;
+            } else {
+
+                stmt.close();
+                rs.close();
+
+                return null;
             }
-
-            stmt.close();
-            rs.close();
-
-            return foundData;
 
         } catch (SQLException e) {
             throw new Exception(e.getMessage());

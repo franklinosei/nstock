@@ -107,6 +107,40 @@ public class TechnicianDAO {
         }
     }
 
+    public TechnicianModel getTechnicianByEmail(String email) throws Exception {
+        try {
+            String query = "SELECT * FROM managers WHERE email = ? AND deleted = 0";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                String firstName = rs.getString("firstName");
+                String lastName = rs.getString("lastName");
+                String gender = rs.getString("gender");
+                String phone = rs.getString("phone");
+                String address = rs.getString("address");
+                Date dob = rs.getDate("dob");
+                String photo = rs.getString("photo");
+                int roleID = rs.getInt("roleID");
+                int labID = rs.getInt("labID");
+                int managerID = rs.getInt("managerID");
+
+                TechnicianModel technician = new TechnicianModel(managerID, firstName, lastName, gender, phone, email, address, dob, photo, roleID, labID);
+                stmt.close();
+                rs.close();
+                return technician;
+            }
+
+            stmt.close();
+            rs.close();
+            return null;
+
+        } catch (SQLException e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
     public ArrayList<TechnicianModel> getAllTechnicians() throws Exception {
 
         try {

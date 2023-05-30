@@ -23,6 +23,11 @@ public class AuthenticationModel {
         this.email = email;
         this.password = password;
     }
+    
+    public AuthenticationModel(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 
     // Getters and Setters
     public int getId() {
