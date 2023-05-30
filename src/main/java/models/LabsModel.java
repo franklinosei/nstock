@@ -23,6 +23,10 @@ public class LabsModel {
         this.photo = photo;
     }
 
+    public LabsModel(int labID, String labName) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public int getLabID() {
         return labID;
     }

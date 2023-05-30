@@ -178,4 +178,8 @@ public class TechnicianDAO {
         }
 
     }
+
+    public TechnicianModel getTechnicianByID(int managerID) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
