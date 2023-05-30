@@ -63,7 +63,7 @@ public class newLab extends HttpServlet {
         } else {
             // Handle GET request for displaying the form
             // Render the form to add a new lab
-            request.getRequestDispatcher("newLab.jsp").forward(request, response);
+            request.getRequestDispatcher("base.jsp").forward(request, response);
         }
 
     }
