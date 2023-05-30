@@ -32,7 +32,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
 
     </head>
-    <body class="login-wrapper">
+    <body class="center-div">
 
         <div class="container">
             <div class="row justify-content-center">

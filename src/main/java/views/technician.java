@@ -4,12 +4,18 @@
  */
 package views;
 
+import controllers.DB_Connection;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import models.TechnicianModel;
+import repositories.TechnicianDAO;
 
 /**
  *
@@ -47,7 +53,41 @@ public class technician extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+
+        Connection connection = null;
+        request.setAttribute("contentName", "technician.jsp");
+        try {
+            DB_Connection dbConnection = new DB_Connection();
+            connection = dbConnection.connect();
+            TechnicianDAO techDAO = new TechnicianDAO(connection);
+            ArrayList<TechnicianModel> techniciansList = techDAO.getAllTechnicians();
+
+            // Set the list of technicians as a request attribute
+            request.setAttribute("technicians", techniciansList);
+
+            // Forward the request to the labs.jsp for displaying the list
+            request.getRequestDispatcher("base.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace(); // Print the full stack trace
+            response.getWriter().println("An error occurred: " + e.getMessage()); // Print the error message
+
+            request.setAttribute("errorMessage", e.getMessage());
+            request.getRequestDispatcher("base.jsp").forward(request, response);
+        } finally {
+            // Close the database connection
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+//        RequestDispatcher rd = request.getRequestDispatcher("base.jsp");
+//        request.setAttribute("contentName", "technician.jsp");
+//        rd.forward(request, response);
     }
 
     /**
