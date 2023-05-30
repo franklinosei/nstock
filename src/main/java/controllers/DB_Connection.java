@@ -12,18 +12,24 @@ import java.sql.SQLException;
  *
  * @author iamdveloper
  */
+
 public class DB_Connection {
        private static Connection conn = null;
 
+
     String password = "nascoict1";
+
+    String password = "password";
+
     String username = "root";
     String url = "jdbc:mysql://localhost:3306/nstock?autoReconnect=true&useSSL=false";
 
 //    private Statement stmt;
     public Connection connect() throws Exception {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
         }
 
         try {
