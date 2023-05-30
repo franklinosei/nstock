@@ -40,6 +40,10 @@
         <servlet-name>newItemServlet</servlet-name>
         <servlet-class>newItemServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>newTechnician</servlet-name>
+        <servlet-class>views.newTechnician</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dashboard</servlet-name>
         <url-pattern>/dashboard</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>newItemServlet</servlet-name>
         <url-pattern>/newItemServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>newTechnician</servlet-name>
+        <url-pattern>/newTechnician</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

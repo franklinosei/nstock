@@ -14,7 +14,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
-<h2>Add Lab</h2>
+<h2 class="p-2">Add Lab</h2>
 <div class="m-2">
     <form class="form-group">
         <div class="flex">
