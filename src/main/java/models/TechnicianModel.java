@@ -44,6 +44,10 @@ public class TechnicianModel {
         this.labID = labID;
     }
 
+    public TechnicianModel(int technicianID, String technicianName) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public int getManagerID() {
         return managerID;
     }

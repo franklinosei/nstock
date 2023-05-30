@@ -1,47 +1,48 @@
-<%-- 
-    Document   : newItem
-    Created on : May 29, 2023, 3:54:00 PM
-    Author     : confi
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>new item</title>
-    </head>
-    <body>
-         <h1>Add item</h1>
-    <form method="post" action="item">
-        <label for="labName">item Name:</label>
-        <input type="text" id="labName" name="name" required><br><br>
+<head>
+    <meta charset="UTF-8">
+    <title>New Item</title>
+</head>
+<body>
+    <h1>New Item</h1>
+    <form method="post" action="newItem">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" required><br>
 
-        <label for="city">descr</label>
-        <input type="text" id="city" name="description" required><br><br>
+        <label for="description">Description:</label>
+        <textarea name="description" id="description" rows="3" required></textarea><br>
 
-        <label for="region">faulty</label>
-        <input type="text" id="region" name="faulty" required><br><br>
+        <label for="photo">Photo:</label>
+        <input type="text" name="photo" id="photo"><br>
 
-        <label for="photo">type ID</label>
-        <input type="text" id="typeid" name="typeID"><br><br>
-        
-         <label for="photo">photo</label>
-        <input type="text" id="photo" name="photo"><br><br>
-        
-         <label for="photo">serial number</label>
-        <input type="text" id="serial" name="serialNumber"><br><br>
-        
-         <label for="photo">lab ID</label>
-        <input type="text" id="labid" name="labID"><br><br>
-        
-<!--         <label for="photo">manager ID</label>
-        <input type="text" id="photo" name="managerID"><br><br>
-        -->
-         <label for="photo">spec ID</label>
-        <input type="text" id="spec" name="specID"><br><br>
+        <label for="serialNumber">Serial Number:</label>
+        <input type="text" name="serialNumber" id="serialNumber" required><br>
 
-        <input type="submit" value="Submit">
+        <label for="labID">Lab ID:</label>
+        <select name="labID" id="labID" required>
+            <c:forEach items="${labList}" var="lab">
+                <option value="${lab.labID}">${lab.labName}</option>
+            </c:forEach>
+        </select><br>
+
+        <label for="managerID">Manager ID:</label>
+        <select name="managerID" id="managerID" required>
+            <c:forEach items="${managerList}" var="manager">
+                <option value="${manager.managerID}">${manager.managerName}</option>
+            </c:forEach>
+        </select><br>
+
+        <label for="specID">Spec ID:</label>
+        <select name="specID" id="specID" required>
+            <c:forEach items="${specList}" var="spec">
+                <option value="${spec.specID}">${spec.specName}</option>
+            </c:forEach>
+        </select><br>
+
+        <input type="submit" value="Add Item">
     </form>
-    </body>
+</body>
 </html>

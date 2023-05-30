@@ -1,19 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package models;
-
-/**
- *
- * @author User
- */
 
 public class ItemsModel {
     private int itemID;
     private String name;
     private String description;
-    private Boolean faulty;
+    private boolean faulty;
     private int typeID;
     private String itemscol;
     private String photo;
@@ -27,20 +18,19 @@ public class ItemsModel {
         // Default constructor
     }
 
-    public ItemsModel(int itemID, String name, String description, Boolean faulty, int typeID, String itemscol, String photo, String serialNumber, int labID, int managerID, int specID, boolean deleted) {
-        this.itemID = itemID;
-        this.name = name;
-        this.description = description;
-        this.faulty = faulty;
-        this.typeID = typeID;
-        this.itemscol = itemscol;
-        this.photo = photo;
-        this.serialNumber = serialNumber;
-        this.labID = labID;
-        this.managerID = managerID;
-        this.specID = specID;
-        this.deleted = deleted;
-    }
+    public ItemsModel(int itemID, String name, String description, boolean faulty, int typeID, String serialNumber, int labID, int managerID, int specID, boolean deleted) {
+    this.itemID = itemID;
+    this.name = name;
+    this.description = description;
+    this.faulty = faulty;
+    this.typeID = typeID;
+    this.serialNumber = serialNumber;
+    this.labID = labID;
+    this.managerID = managerID;
+    this.specID = specID;
+    this.deleted = deleted;
+}
+
 
     public int getItemID() {
         return itemID;
@@ -66,11 +56,11 @@ public class ItemsModel {
         this.description = description;
     }
 
-    public Boolean getFaulty() {
+    public boolean isFaulty() {
         return faulty;
     }
 
-    public void setFaulty(Boolean faulty) {
+    public void setFaulty(boolean faulty) {
         this.faulty = faulty;
     }
 
