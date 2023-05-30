@@ -88,7 +88,7 @@ public class login extends HttpServlet {
             TechnicianModel technicianData = authenticator.login(email, password);
 
             if (technicianData != null) {
-                request.setAttribute("userData", technicianData);
+                request.setAttribute("user", technicianData);
                 
                 String sessionId = SessionManager.createSession(technicianData.getEmail());
                 response.addCookie(new Cookie("session_id", sessionId));

@@ -113,85 +113,35 @@ public class ItemDAO {
             throw new Exception(e.getMessage());
         }
     }
-    
-    public List<TechnicianModel> getAllTechnician() throws Exception {
-    try {
-        List<TechnicianModel> technicianList = new ArrayList<>();
-        String query = "SELECT * FROM technicians";
-        Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
 
-        while (rs.next()) {
-            // Retrieve the technician data from the result set and create a TechnicianModel object
-            int technicianID = rs.getInt("technicianID");
-            String technicianName = rs.getString("technicianName");
-            // ... Retrieve other technician attributes from the result set as needed
+   
+    public List<SpecificationModel> getAllSpecification() throws Exception {
+        try {
+            List<SpecificationModel> specList = new ArrayList<>();
+            String query = "SELECT * FROM specifications";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
 
-            TechnicianModel technician = new TechnicianModel(technicianID, technicianName);
-            // ... Set other attributes of the technician object as needed
+            while (rs.next()) {
+                // Retrieve the specification data from the result set and create a SpecificationModel object
+                int specID = rs.getInt("specID");
+                int ramSize = rs.getInt("ramSize");
+                int storageSize = rs.getInt("storageSize");
+                int screenSize = rs.getInt("screenSize");
+                // ... Retrieve other specification attributes from the result set as needed
 
-            technicianList.add(technician);
+                SpecificationModel specification = new SpecificationModel(specID, ramSize, storageSize, screenSize);
+                // ... Set other attributes of the specification object as needed
+
+                specList.add(specification);
+            }
+
+            stmt.close();
+            rs.close();
+            return specList;
+        } catch (SQLException e) {
+            throw new Exception(e.getMessage());
         }
-
-        stmt.close();
-        rs.close();
-        return technicianList;
-    } catch (SQLException e) {
-        throw new Exception(e.getMessage());
     }
-}
 
-public List<SpecificationModel> getAllSpecification() throws Exception {
-    try {
-        List<SpecificationModel> specList = new ArrayList<>();
-        String query = "SELECT * FROM specifications";
-        Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-
-        while (rs.next()) {
-            // Retrieve the specification data from the result set and create a SpecificationModel object
-            int specID = rs.getInt("specID");
-            String specName = rs.getString("specName");
-            // ... Retrieve other specification attributes from the result set as needed
-
-            SpecificationModel specification = new SpecificationModel(specID, specName);
-            // ... Set other attributes of the specification object as needed
-
-            specList.add(specification);
-        }
-
-        stmt.close();
-        rs.close();
-        return specList;
-    } catch (SQLException e) {
-        throw new Exception(e.getMessage());
-    }
-}
-
-public List<LabsModel> getAllLabs() throws Exception {
-    try {
-        List<LabsModel> labList = new ArrayList<>();
-        String query = "SELECT * FROM labs";
-        Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-
-        while (rs.next()) {
-            // Retrieve the lab data from the result set and create a LabsModel object
-            int labID = rs.getInt("labID");
-            String labName = rs.getString("labName");
-            // ... Retrieve other lab attributes from the result set as needed
-
-            LabsModel lab = new LabsModel(labID, labName);
-            // ... Set other attributes of the lab object as needed
-
-            labList.add(lab);
-        }
-
-        stmt.close();
-        rs.close();
-        return labList;
-    } catch (SQLException e) {
-        throw new Exception(e.getMessage());
-    }
-}
 }

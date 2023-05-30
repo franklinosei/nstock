@@ -7,7 +7,6 @@ package views;
 import controllers.Authenticator;
 import controllers.DB_Connection;
 import controllers.Manager;
-import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -20,7 +19,6 @@ import java.util.ArrayList;
 import models.LabsModel;
 import models.TechnicianModel;
 import repositories.LabDAO;
-import repositories.TechnicianDAO;
 
 /**
  *
