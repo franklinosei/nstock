@@ -86,7 +86,7 @@ public class Manager extends Technician {
             return rowsAffected;
 
         } catch (Exception ex) {
-            throw new Exception("An error occurred while adding the lab.", ex);
+            throw new Exception("An error occurred while adding the technician." + ex.getMessage());
         }
     }
 
@@ -96,7 +96,7 @@ public class Manager extends Technician {
             return rowsAffected;
 
         } catch (Exception ex) {
-            throw new Exception("An error occurred while adding the lab.", ex);
+            throw new Exception("An error occurred while updating technician " + ex.getMessage());
         }
     }
 
@@ -105,7 +105,7 @@ public class Manager extends Technician {
             int rowsAffected = manageTechnicians.deleteTechnician(techie);
             return rowsAffected;
         } catch (Exception ex) {
-            throw new Exception("An error occured while updating the item", ex);
+            throw new Exception("An error occured while deleting the technician " + ex.getMessage());
         }
     }
 
