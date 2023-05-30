@@ -12,36 +12,43 @@
         <title>new item</title>
     </head>
     <body>
-         <h1>Add item</h1>
-    <form method="post" action="item">
-        <label for="labName">item Name:</label>
-        <input type="text" id="labName" name="name" required><br><br>
+         <div class="border border-3 m-3" >
+    <h3 class="p-3">Add Item</h3>
 
-        <label for="city">descr</label>
-        <input type="text" id="city" name="description" required><br><br>
+    <form class="form-group m-3" method="post" action="labs">
+        <div class="mb-3 ">
+            <div class="input-group">
+                <input type="text" required="true" class="form-control p-2" placeholder="Item Name" name="name" aria-describedby="basic-addon1">&nbsp;&nbsp;
+                <input type="text" required="true" class="form-control p-2" placeholder="Description" name="description" aria-describedby="basic-addon1">
 
-        <label for="region">faulty</label>
-        <input type="text" id="region" name="faulty" required><br><br>
+            </div> 
+        </div>
+        <div  class="input-group" >
 
-        <label for="photo">type ID</label>
-        <input type="text" id="typeid" name="typeID"><br><br>
-        
-         <label for="photo">photo</label>
-        <input type="text" id="photo" name="photo"><br><br>
-        
-         <label for="photo">serial number</label>
-        <input type="text" id="serial" name="serialNumber"><br><br>
-        
-         <label for="photo">lab ID</label>
-        <input type="text" id="labid" name="labID"><br><br>
-        
-<!--         <label for="photo">manager ID</label>
-        <input type="text" id="photo" name="managerID"><br><br>
-        -->
-         <label for="photo">spec ID</label>
-        <input type="text" id="spec" name="specID"><br><br>
+            <select class="form-control" required="true" name="faulty">
+                <option>Faulty?</option>
+                <option>Yes</option>
+                <option>No</option>
 
-        <input type="submit" value="Submit">
+            </select>&nbsp;&nbsp;
+            <input  type="text" class="form-control p-2" required="true" name="photo" id="city" placeholder="Photo" aria-describedby="basic-addon1">
+        </div><br>
+        <div >
+            <div class="input-group">
+                <input type="text" required="true" class="form-control p-2" placeholder="Serial Number" name="serialNumber" aria-describedby="basic-addon1">&nbsp;&nbsp;
+                <select class="form-control" required="true" name="itemType">
+                    <option>Click to Select Item Type</option>
+                    <option>Laptop</option>
+                    <option>Desktop</option>
+                    <option>Monitor</option>
+                </select>
+            </div>
+
+        </div>
+        <div>
+            <input class="btn btn-outline-success p-2 mt-4" type="submit" value="Save">
+        </div><br>
     </form>
+</div>
     </body>
 </html>
