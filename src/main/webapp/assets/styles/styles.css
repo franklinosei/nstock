@@ -7,6 +7,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Author     : iamdveloper
 */
 
+.login-wrapper {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+}
+
 .content-wrapper {
     display: flex;
     flex-direction: row;
