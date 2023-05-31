@@ -7,7 +7,7 @@
 
 <!-- <<<<<<< jsb-forms-ready -->
 
-<div class="border border-3 m-3 p-2">
+<!--<div class="border border-3 m-3 p-2">
     <h3 class="p-2">Technician List</h3>
     <a href="http://localhost:8080/nstock/newTechnician"><button class="btn btn-outline-success float-end mb-3">Add Technician</button></a>
     <div>
@@ -51,7 +51,7 @@
             
         </table>
     </div>
-</div>
+</div>-->
 <!-- ======= -->
 <div class="view-genre p-4">
     <!--    <h1>List of all Technicians
@@ -102,8 +102,6 @@
             <h1>${errorMessage}</h1>
         </c:if>
     </div>
-
-
 
 </div>
 <!-- >>>>>>> main -->

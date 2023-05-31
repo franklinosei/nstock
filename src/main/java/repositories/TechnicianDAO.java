@@ -164,6 +164,7 @@ public class TechnicianDAO {
                 String roleID = rs.getString("roleID");
                 String labID = rs.getString("labID");
                 int managerID = rs.getInt("managerID");
+                
 
                 // TODO: Update the models to access attributes via constructor
                 TechnicianModel lab = new TechnicianModel(managerID, firstName, lastName, gender, phone, email, address, dob, photo, managerID, managerID);

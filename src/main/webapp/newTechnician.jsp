@@ -7,7 +7,7 @@
 
 <!-- <<<<<<< jsb-forms-ready -->
 
-<div class="border border-3 m-3 p-2">
+<!--<div class="border border-3 m-3 p-2">
     <h3 class="p-2">Add Technician</h3>
     <div>
         <form>
@@ -38,7 +38,7 @@
             </div>
             <div class="p-2">
                 <input  type="submit" value="Save" class="btn btn-outline-success" >
-            </div>
+            </div>-->
 <!-- ======= -->
 <div class="center-div mt-5 mb-5">
     <div class="container shadow p-4 rounded w-70">
@@ -97,9 +97,9 @@
                     <label for="photo">Photo:</label>
                     <input type="text" class="form-control" id="photo" name="photo" required>
                 </div>
-                
-                
-                 <div class="form-group mt-2">
+
+
+                <div class="form-group mt-2">
                     <label for="labID">Assigned Lab:</label>
                     <!--<input type="number" class="form-control" id="labID" name="labID" required>-->
                     <select class="form-control" id="labID" name="labID" required>
@@ -109,8 +109,8 @@
                         </c:forEach>
                     </select>
                 </div>
-                
-                
+
+
                 <div class="form-group mt-2">
                     <label for="roleID">Role:</label>
                     <!--                <input type="number" class="form-control" id="roleID" name="roleID" required>-->
@@ -123,10 +123,10 @@
                 </div>
 
 
-               
+
             </div>
             <button type="submit" class="btn btn-primary mt-4 ms-4">Add Technician</button>
-<!-- >>>>>>> main -->
+            <!-- >>>>>>> main -->
         </form>
     </div>
 </div>
