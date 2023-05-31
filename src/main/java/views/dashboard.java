@@ -11,6 +11,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import models.TechnicianModel;
 import utils.SessionManager;
 
 /**
@@ -48,9 +49,11 @@ public class dashboard extends HttpServlet {
         if (sessionId != null && SessionManager.isValidSession(sessionId)) {
             // User is authenticated, proceed with the protected route logic
             // Retrieve the associated username if needed
-            String username = SessionManager.getUsername(sessionId);
+            TechnicianModel user = SessionManager.getUser(sessionId);
 
             RequestDispatcher rd = request.getRequestDispatcher("base.jsp");
+            
+            request.setAttribute("user", user);
             request.setAttribute("contentName", "dashboard.jsp");
             rd.forward(request, response);
 

@@ -8,18 +8,18 @@ package utils;
  *
  * @author iamdveloper
  */
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import models.TechnicianModel;
 
 public class SessionManager {
     private static final long SESSION_TIMEOUT = 30 * 60 * 1000; // 30 minutes
     private static final Map<String, Session> sessions = new HashMap<>();
 
-    public static String createSession(String username) {
+    public static String createSession(TechnicianModel user) {
         String sessionId = generateSessionId();
-        Session session = new Session(sessionId, username);
+        Session session = new Session(sessionId, user);
         sessions.put(sessionId, session);
         return sessionId;
     }
@@ -33,10 +33,10 @@ public class SessionManager {
         return false;
     }
 
-    public static String getUsername(String sessionId) {
+    public static TechnicianModel getUser(String sessionId) {
         Session session = sessions.get(sessionId);
         if (session != null) {
-            return session.getUsername();
+            return session.getUser();
         }
         return null;
     }
@@ -51,12 +51,12 @@ public class SessionManager {
 
     private static class Session {
         private final String sessionId;
-        private final String username;
+        private final TechnicianModel user;
         private long lastAccessedTime;
 
-        public Session(String sessionId, String username) {
+        public Session(String sessionId, TechnicianModel user) {
             this.sessionId = sessionId;
-            this.username = username;
+            this.user = user;
             this.lastAccessedTime = System.currentTimeMillis();
         }
 
@@ -68,8 +68,8 @@ public class SessionManager {
             lastAccessedTime = System.currentTimeMillis();
         }
 
-        public String getUsername() {
-            return username;
+        public TechnicianModel getUser() {
+            return user;
         }
     }
 }

@@ -7,10 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import models.ItemTypeModel;
 import models.ItemsModel;
-import models.LabsModel;
 import models.SpecificationModel;
-import models.TechnicianModel;
 import utils.Utils;
 
 public class ItemDAO {
@@ -23,7 +22,7 @@ public class ItemDAO {
 
     public int insertItem(ItemsModel item) throws Exception {
         try {
-            String query = "INSERT INTO items (name, description, faulty, typeID, photo, serialNumber, labID, managerID, specID, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO items (name, description, faulty, typeID, photo, serialNumber, labID, managerID,  createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, item.getName());
             stmt.setString(2, item.getDescription());
@@ -33,12 +32,12 @@ public class ItemDAO {
             stmt.setString(6, item.getSerialNumber());
             stmt.setInt(7, item.getLabID());
             stmt.setInt(8, item.getManagerID());
-            stmt.setInt(9, item.getSpecID());
+//            stmt.setInt(9, item.getSpecID());
 
             String currentTime = Utils.getCurrentDateTime();
 
+            stmt.setString(9, currentTime);
             stmt.setString(10, currentTime);
-            stmt.setString(11, currentTime);
 
             int rowsAffected = stmt.executeUpdate();
             stmt.close();
@@ -139,6 +138,34 @@ public class ItemDAO {
             stmt.close();
             rs.close();
             return specList;
+        } catch (SQLException e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+    
+    
+     public List<ItemTypeModel> getAllItemTypes() throws Exception {
+        try {
+            List<ItemTypeModel> typesList = new ArrayList<>();
+            String query = "SELECT * FROM item_types";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+               
+                int typeID = rs.getInt("typeID");
+                String typeName = rs.getString("typeName");
+
+                ItemTypeModel itemTypeModel = new ItemTypeModel(typeID, typeName);
+                // ... Set other attributes of the specification object as needed
+
+                typesList.add(itemTypeModel);
+            }
+
+            stmt.close();
+            rs.close();
+            
+            return typesList;
         } catch (SQLException e) {
             throw new Exception(e.getMessage());
         }
