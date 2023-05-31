@@ -5,7 +5,7 @@
 --%>
 
 
-<div class="border border-3 m-3" >
+<div class="border border-3 m-3 " >
     <h3 class="p-3">Add Lab</h3>
 
     <form class="form-group m-3" method="post" action="labs">
