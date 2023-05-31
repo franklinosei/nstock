@@ -75,39 +75,68 @@ public class labs extends HttpServlet {
     }
     
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // Check if it's an edit request
-        String editAction = request.getParameter("editAction");
-        if (editAction != null && editAction.equals("editLab")) {
-            // Retrieve the edited lab data from request parameters
-            int labID = Integer.parseInt(request.getParameter("labID"));
-            String labName = request.getParameter("labName");
-            String city = request.getParameter("city");
-            String region = request.getParameter("region");
-            String photo = request.getParameter("photo");
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    String editAction = request.getParameter("editAction");
 
-            // Update the lab information in the data source
+    if (editAction != null && editAction.equals("editLab")) {
+        // This is an edit request
+        int labID = Integer.parseInt(request.getParameter("labID"));
+        String labName = request.getParameter("labName");
+        String city = request.getParameter("city");
+        String region = request.getParameter("region");
+        String photo = request.getParameter("photo");
+
+        // Update the lab information in the data source
+        Connection connection = null;
+        try {
+            DB_Connection dbConnection = new DB_Connection();
+            connection = dbConnection.connect();
+            LabDAO labDAO = new LabDAO(connection);
+            LabsModel lab = new LabsModel(labID, labName, city, region, photo);
+            int rowsAffected = labDAO.updateLab(lab);
+            if (rowsAffected > 0) {
+                // Lab updated successfully
+                request.setAttribute("lab", lab);
+                request.setAttribute("contentName", "editLab.jsp");
+                // Forward the request to the editLab.jsp for displaying the updated lab
+                request.getRequestDispatcher("editLab.jsp").forward(request, response);
+            } else {
+                // Failed to update lab
+                response.getWriter().println("Failed to update lab. Please try again.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.getWriter().println("An error occurred: " + e.getMessage());
+        } finally {
+            // Close the database connection
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    } else {
+        // This is a delete request
+        String deleteAction = request.getParameter("deleteAction");
+        if (deleteAction != null && deleteAction.equals("deleteLab")) {
+            int labID = Integer.parseInt(request.getParameter("labID"));
+
+            // Delete the lab from the data source
             Connection connection = null;
             try {
                 DB_Connection dbConnection = new DB_Connection();
                 connection = dbConnection.connect();
                 LabDAO labDAO = new LabDAO(connection);
-                LabsModel lab = new LabsModel(labID, labName, city, region, photo);
-                int rowsAffected = labDAO.updateLab(lab);
+                int rowsAffected = labDAO.deleteLab(labID);
                 if (rowsAffected > 0) {
-                    // Lab updated successfully
-
-                    // Set the updated lab as a request attribute
-                    request.setAttribute("lab", lab);
-
-//                    Content to display name
-                    request.setAttribute("contentName", "editLab.jsp");
-                    // Forward the request to the editLab.jsp for displaying the updated lab
-                    request.getRequestDispatcher("editLab.jsp").forward(request, response);
+                    // Lab deleted successfully
+                    response.getWriter().println("Lab deleted successfully.");
                 } else {
-                    // Failed to update lab
-                    response.getWriter().println("Failed to update lab. Please try again.");
+                    // Failed to delete lab
+                    response.getWriter().println("Failed to delete lab. Please try again.");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -126,6 +155,8 @@ public class labs extends HttpServlet {
             processRequest(request, response);
         }
     }
+}
+
     
     @Override
     public String getServletInfo() {
