@@ -12,6 +12,7 @@ import jakarta.servlet.http.Cookie;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.List;
+import models.ItemTypeModel;
 import models.LabsModel;
 import models.SpecificationModel;
 import models.TechnicianModel;
@@ -37,6 +38,9 @@ public class newItem extends HttpServlet {
         }
         
         if (sessionId != null && SessionManager.isValidSession(sessionId)) {
+           
+            TechnicianModel userData = SessionManager.getUser(sessionId);
+//            request.setAttribute("user", userData);
             
             request.setAttribute("contentName", "newItem.jsp");
             // Handle POST request to add a new item
@@ -46,9 +50,16 @@ public class newItem extends HttpServlet {
                 String description = request.getParameter("description");
                 String photo = request.getParameter("photo");
                 String serialNumber = request.getParameter("serialNumber");
-                int labID = Integer.parseInt(request.getParameter("labID"));
-                int managerID = Integer.parseInt(request.getParameter("managerID"));
-                int specID = Integer.parseInt(request.getParameter("specID"));
+                boolean isFaulty = Boolean.parseBoolean(request.getParameter("faulty"));
+                String labID = request.getParameter("labID");
+                int typeID = Integer.parseInt(request.getParameter("itemType"));
+                
+//                person who added this item
+                int managerID = userData.getManagerID();
+//                int specID = Integer.parseInt(request.getParameter("specID"));
+
+
+                
 
                 // Create a new ItemsModel object with the form data
                 ItemsModel newItem = new ItemsModel();
@@ -56,9 +67,13 @@ public class newItem extends HttpServlet {
                 newItem.setDescription(description);
                 newItem.setPhoto(photo);
                 newItem.setSerialNumber(serialNumber);
-                newItem.setLabID(labID);
+                newItem.setFaulty(isFaulty);
+                newItem.setTypeID(typeID);
+                
+                newItem.setLabID(labID != null ? Integer.parseInt(name) : userData.getLabID());
+                
                 newItem.setManagerID(managerID);
-                newItem.setSpecID(specID);
+//                newItem.setSpecID(specID);
 
                 // Insert the new item into the database using the ItemDAO
                 try {
@@ -75,8 +90,7 @@ public class newItem extends HttpServlet {
                         response.getWriter().println("Failed to add item");
                     }
                 } catch (Exception e) {
-                    e.printStackTrace();
-                    response.getWriter().println("An error occurred");
+                    response.getWriter().println("An error occurred " + e.getMessage());
                 }
             } else {
                 // Handle GET request for displaying the form
@@ -85,6 +99,7 @@ public class newItem extends HttpServlet {
                     
                     DB_Connection dbConnection = new DB_Connection();
                     Connection connection = dbConnection.connect();
+                    
                     ItemDAO itemDAO = new ItemDAO(connection);
                     LabDAO labDAO = new LabDAO(connection);
                     TechnicianDAO technicians = new TechnicianDAO(connection);
@@ -93,11 +108,18 @@ public class newItem extends HttpServlet {
                     List<LabsModel> labList = labDAO.getAllLabs();
                     List<TechnicianModel> managerList = technicians.getAllTechnicians();
                     List<SpecificationModel> specList = itemDAO.getAllSpecification();
+                    List<ItemTypeModel> typesList = itemDAO.getAllItemTypes();
 
                     // Set the attributes to be used in the JSP
-                    request.setAttribute("labList", labList);
+                    
+//                    ID for manager is 1 ... Find a better way to do it than hardcode it
+                    if(userData.getRoleID() == 1) {
+                        request.setAttribute("labList", labList);
+                    }
+                    
                     request.setAttribute("managerList", managerList);
                     request.setAttribute("specList", specList);
+                    request.setAttribute("typesList", typesList);
 
                     // Forward the request to the JSP for rendering
                     request.getRequestDispatcher("base.jsp").forward(request, response);

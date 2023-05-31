@@ -9,7 +9,7 @@
 
 <!--<div class="border border-3 m-3 p-2">
     <h3 class="p-2">Technician List</h3>
-    <a href="http://localhost:8080/nstock/newTechnician"><button class="btn btn-outline-success float-end mb-3">Add Technician</button></a>
+    <a href="/nstock/newTechnician"><button class="btn btn-outline-success float-end mb-3">Add Technician</button></a>
     <div>
         <table class="table tabble-striped table-hover">
             <tr>
@@ -60,14 +60,12 @@
     
         </h1>-->
 
-    <div class="mb-4 justify-content-end">
-        <a href="/nstock/newTechnician">
-            <button type="button" class="btn btn-success">Add Technician</button>
-        </a>
+    <div class="mb-4 justify-content-end mb-5">
+        <a href="/nstock/newTechnician"><button class="btn btn-outline-success float-end mb-3">Add Technician</button></a>
     </div>
 
 
-    <div class="d-flex flex-wrap">
+    <div class="d-flex flex-wrap">    
 
         <c:if test="${empty technicians}">
             <h3>Not data found at the moment</h3>

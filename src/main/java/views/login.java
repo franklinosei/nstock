@@ -58,8 +58,9 @@ public class login extends HttpServlet {
         if (sessionId != null && SessionManager.isValidSession(sessionId)) {
             // User is authenticated, proceed with the protected route logic
             // Retrieve the associated username if needed
-            String username = SessionManager.getUsername(sessionId);
-
+            TechnicianModel userData = SessionManager.getUser(sessionId);
+            request.setAttribute("user", userData);
+            
             response.sendRedirect("/nstock/dashboard");
         } else {
             // User is not authenticated, redirect to the login page or return an error response
@@ -88,9 +89,10 @@ public class login extends HttpServlet {
             TechnicianModel technicianData = authenticator.login(email, password);
 
             if (technicianData != null) {
+                
                 request.setAttribute("user", technicianData);
                 
-                String sessionId = SessionManager.createSession(technicianData.getEmail());
+                String sessionId = SessionManager.createSession(technicianData);
                 response.addCookie(new Cookie("session_id", sessionId));
                 response.sendRedirect("/nstock/dashboard");
             } else {
