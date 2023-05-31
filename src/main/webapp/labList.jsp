@@ -10,24 +10,50 @@
         <div class="border border-3 m-2 p-3 bg-light">
             <h3 class="heading">LABS</h3>
             <a href="http://localhost:8080/nstock/newLab"> <button class="btn btn-outline-success float-end m-2 ">Add lab</button></a>
-            <table class="table table-striped  table-hover ">
-                <tr>
-                    <th>LAB NAME</th>
-                    <th>CITY</th>
-                    <th>REGION</th>
-                    <th>PHOTO</th>
-                    <th>ACTIONS</th>
-                </tr>
-                <c:forEach var="lab" items="${labs}">
-                    <tr>
-                        <td>${lab.labName}</td>
-                        <td>${lab.city}</td>
-                        <td>${lab.region}</td>
-                        <td><img class="rounded-circle" src="${lab.photo}" alt="Lab Photo" width="40" height="40"></td>
-                        <td><a href="editLab.jsp?labID=${lab.labID}"><button class="btn btn-primary">Edit</button></a> &nbsp; <button class="btn btn-danger">X</button></td>
-                    </tr>
-                </c:forEach>
-            </table>
+        <table class="table table-striped table-hover">
+    <tr>
+        <th>LAB NAME</th>
+        <th>CITY</th>
+        <th>REGION</th>
+        <th>PHOTO</th>
+        <th>ACTIONS</th>
+    </tr>
+    <c:forEach var="lab" items="${labs}">
+        <tr>
+            <td>${lab.labName}</td>
+            <td>${lab.city}</td>
+            <td>${lab.region}</td>
+            <td><img class="rounded-circle" src="${lab.photo}" alt="Lab Photo" width="40" height="40"></td>
+            <td>
+                <a href="editLab.jsp?labID=${lab.labID}"><button class="btn btn-primary">Edit</button></a>
+                <button class="btn btn-danger" onclick="deleteLab(${lab.labID})">X</button>
+            </td>
+        </tr>
+    </c:forEach>
+</table>
+
+<script>
+    function deleteLab(labID) {
+        if (confirm("Are you sure you want to delete this lab?")) {
+            // Send an AJAX request to delete the lab
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "labs");
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    alert(xhr.responseText);
+                    // Refresh the page to update the lab list
+                    location.reload();
+                } else {
+                    alert("Failed to delete lab. Please try again.");
+                }
+            };
+            xhr.send("deleteAction=deleteLab&labID=" + labID);
+        }
+    }
+</script>
+
+
 
 <!--ADD LAB-->
 
@@ -92,3 +118,5 @@
         </div>-->
     </html>
 
+
+    
