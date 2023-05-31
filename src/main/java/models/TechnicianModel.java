@@ -9,7 +9,6 @@ package models;
  * @author User
  */
 import java.util.Date;
-import java.time.LocalDate;
 
 
 public class TechnicianModel {
@@ -42,6 +41,10 @@ public class TechnicianModel {
         this.photo = photo;
         this.roleID = roleID;
         this.labID = labID;
+    }
+
+    public TechnicianModel(int technicianID, String technicianName) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public int getManagerID() {

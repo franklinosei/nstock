@@ -31,8 +31,9 @@ public class TechnicianDAO {
 
         try {
             // Insert query
-            String query = "INSERT INTO managers (firstName, lastName, gender, phone, email, address, dob, photo, roleID, labID, createdAt, updatedAt) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            String query = "INSERT INTO managers (firstName, lastName, gender, phone, email, address, dob, photo, roleID, labID, createdAt, updatedAt) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(query);
+            
             stmt.setString(1, technician.getFirstName());
             stmt.setString(2, technician.getLastName());
             stmt.setString(3, technician.getGender());
@@ -176,5 +177,9 @@ public class TechnicianDAO {
             throw new Exception(e.getMessage());
         }
 
+    }
+
+    public TechnicianModel getTechnicianByID(int managerID) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

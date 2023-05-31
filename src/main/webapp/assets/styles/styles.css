@@ -7,7 +7,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Author     : iamdveloper
 */
 
-.login-wrapper {
+.center-div {
 
     display: flex;
     align-items: center;
@@ -27,4 +27,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     color: black !important;
     font-weight: 800;
     background-color: #e8c314;
+}
+
+.w-70 {
+    width: 70%;
 }
