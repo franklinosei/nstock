@@ -23,15 +23,20 @@ public class LabDAO {
         try {
             String query = "INSERT INTO labs (labName, city, region, photo, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(query);
+            
             stmt.setString(1, lab.getLabName());
             stmt.setString(2, lab.getCity());
             stmt.setString(3, lab.getRegion());
             stmt.setString(4, lab.getPhoto());
+            
             String currentTime = Utils.getCurrentDateTime();
+            
             stmt.setString(5, currentTime);
             stmt.setString(6, currentTime);
             int rowsAffected = stmt.executeUpdate();
+           
             stmt.close();
+            
             return rowsAffected;
         } catch (SQLException e) {
             throw new Exception(e.getMessage());
