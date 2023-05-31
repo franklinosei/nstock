@@ -9,7 +9,6 @@ package models;
  * @author User
  */
 import java.util.Date;
-import java.time.LocalDate;
 
 
 public class TechnicianModel {

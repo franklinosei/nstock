@@ -7,9 +7,11 @@ package views;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import utils.SessionManager;
 
 /**
  *
@@ -29,10 +31,34 @@ public class dashboard extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        RequestDispatcher rd = request.getRequestDispatcher("base.jsp");
-        request.setAttribute("contentName", "dashboard.jsp");
-        rd.forward(request, response);
+
+        // Retrieve the session ID from the session cookie
+        String sessionId = null;
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("session_id")) {
+                    sessionId = cookie.getValue();
+                    break;
+                }
+            }
+        }
+
+        // Verify the session
+        if (sessionId != null && SessionManager.isValidSession(sessionId)) {
+            // User is authenticated, proceed with the protected route logic
+            // Retrieve the associated username if needed
+            String username = SessionManager.getUsername(sessionId);
+
+            RequestDispatcher rd = request.getRequestDispatcher("base.jsp");
+            request.setAttribute("contentName", "dashboard.jsp");
+            rd.forward(request, response);
+
+        } else {
+            // User is not authenticated, redirect to the login page or return an error response
+            response.sendRedirect("/nstock/login");
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
