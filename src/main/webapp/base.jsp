@@ -27,17 +27,17 @@
         <!--Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     </head>
     <body id="page-top">
 
 
         <div id="wrapper">
-            
+
             <div class="sidebar">
                 <%@ include file="sidebar.jsp" %>
             </div>
-            
+
 
 
 
@@ -52,10 +52,10 @@
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
                         <jsp:include page="${contentName}" flush="true"></jsp:include>
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
 
         <!-- Bootstrap -->
