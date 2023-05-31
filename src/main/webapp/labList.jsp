@@ -25,7 +25,7 @@
             <td>${lab.region}</td>
             <td><img class="rounded-circle" src="${lab.photo}" alt="Lab Photo" width="40" height="40"></td>
             <td>
-                <a href="editLab.jsp?labID=${lab.labID}"><button class="btn btn-primary">Edit</button></a>
+                <a href="editLab?id=${lab.labID}"><button class="btn btn-primary">Edit</button></a>
                 <button class="btn btn-danger" onclick="deleteLab(${lab.labID})">X</button>
             </td>
         </tr>
