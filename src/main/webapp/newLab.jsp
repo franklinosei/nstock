@@ -8,7 +8,7 @@
 <div class="border border-3 m-3 " >
     <h3 class="p-3">Add Lab</h3>
 
-    <form class="form-group m-3" method="post" action="labs">
+    <form class="form-group m-3" method="post" action="/nstock/newLab">
         <div class="mb-3 ">
             <div class="input-group">
                 <input type="text" required="true" class="form-control p-2" placeholder="Lab Name" name="labName" aria-describedby="basic-addon1">&nbsp;&nbsp;
@@ -28,7 +28,7 @@
                                 </select>&nbsp;&nbsp;             -->
             <input  type="text" class="form-control mb-3 p-2" required="true" name="region" id="region" placeholder="Region" aria-describedby="basic-addon1"> &nbsp; &nbsp;
 
-            <input  type="text" class="form-control mb-3 p-2" required="true" name="photo" id="city" placeholder="Photo" aria-describedby="basic-addon1">
+            <input  type="text" class="form-control mb-3 p-2" required="true" name="photo" id="photo" placeholder="Photo" aria-describedby="basic-addon1">
         </div><br>
         <div >
             <input class="btn btn-outline-success mp-2" type="submit" value="Save">
