@@ -87,6 +87,11 @@
                                 <h6 class="card-text me-2">${techie.getFirstName()}</h6>
                                 <h6 class="card-text">${techie.getLastName()}</h6>
                             </div>
+                            
+                            <div>
+                                 <h6 class="card-text me-2">Assigned Lab: </h6>
+                                <h6 class="card-text">${techie.getAssignedLab().getLabName()}</h6>
+                            </div>
 
                         </div>
                     </div>
