@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import models.LabsModel;
+import models.RoleModel;
 import models.TechnicianModel;
 import utils.Utils;
 
@@ -33,7 +35,7 @@ public class TechnicianDAO {
             // Insert query
             String query = "INSERT INTO managers (firstName, lastName, gender, phone, email, address, dob, photo, roleID, labID, createdAt, updatedAt) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(query);
-            
+
             stmt.setString(1, technician.getFirstName());
             stmt.setString(2, technician.getLastName());
             stmt.setString(3, technician.getGender());
@@ -59,6 +61,52 @@ public class TechnicianDAO {
         }
 
     }
+
+    public TechnicianModel fetchTechnicianRole(TechnicianModel technician) throws Exception {
+    try {
+        String query = "SELECT l.labID, l.labName, l.city, l.region, m.managerID, m.firstName, m.lastName, m.gender, m.phone, m.email, m.dob, m.photo, m.roleID, m.labID, r.roleName, r.roleID FROM labs AS l\n"
+                + "JOIN managers as m ON m.managerID = managerID\n"
+                + "JOIN roles as r ON roleName = r.roleName;";
+        PreparedStatement stmt = conn.prepareStatement(query);
+        ResultSet rs = stmt.executeQuery();
+
+        // Assuming TechnicianModel has appropriate setters for the fetched values
+        if (rs.next()) {
+            technician.labsModel.setLabID(rs.getInt("labID"));
+            technician.setLabName(rs.getString("labName"));
+            technician.setCity(rs.getString("city"));
+            technician.setRegion(rs.getString("region"));
+            technician.setManagerID(rs.getInt("managerID"));
+            technician.setFirstName(rs.getString("firstName"));
+            technician.setLastName(rs.getString("lastName"));
+            technician.setGender(rs.getString("gender"));
+            technician.setPhone(rs.getString("phone"));
+            technician.setEmail(rs.getString("email"));
+            technician.setDob(rs.getString("dob"));
+            technician.setPhoto(rs.getString("photo"));
+            technician.setRoleID(rs.getInt("roleID"));
+       
+            
+            RoleModel fetchedRole = new RoleModel(rs.getInt("roleID"), rs.getString("roleName"));
+            
+            technician.setAssignedRole(fetchedRole);
+            LabsModel fetchLab = new LabsModel(rs.getInt("labID"),rs.getString("labName"));
+            
+            
+            
+        }
+
+        // Close the statement and result set
+        stmt.close();
+        rs.close();
+
+    } catch (SQLException e) {
+        throw new Exception("Error fetching technician role", e);
+    }
+
+    return technician;
+}
+
 
     public int updateTechnician(TechnicianModel technician) throws Exception {
 
@@ -164,7 +212,6 @@ public class TechnicianDAO {
                 String roleID = rs.getString("roleID");
                 String labID = rs.getString("labID");
                 int managerID = rs.getInt("managerID");
-                
 
                 // TODO: Update the models to access attributes via constructor
                 TechnicianModel lab = new TechnicianModel(managerID, firstName, lastName, gender, phone, email, address, dob, photo, managerID, managerID);
