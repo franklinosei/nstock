@@ -14,6 +14,15 @@ public class LabsModel {
     public LabsModel() {
         // Default constructor
     }
+    
+    
+        public LabsModel(int labID, String labName, String city, String region) {
+        this.labID = labID;
+        this.labName = labName;
+        this.city = city;
+        this.region = region;
+       
+    }
 
     public LabsModel(int labID, String labName, String city, String region, String photo) {
         this.labID = labID;
