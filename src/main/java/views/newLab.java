@@ -46,6 +46,7 @@ public class newLab extends HttpServlet {
 
             // Handle POST request to add a new lab
             if (request.getMethod().equalsIgnoreCase("POST")) {
+                
                 String labName = request.getParameter("labName");
                 String city = request.getParameter("city");
                 String region = request.getParameter("region");
@@ -62,11 +63,12 @@ public class newLab extends HttpServlet {
                 try {
                     DB_Connection dbConnection = new DB_Connection();
                     LabDAO labDAO = new LabDAO(dbConnection.connect());
+                    
                     int rowsAffected = labDAO.insertLab(lab);
                     
                     if (rowsAffected > 0) {
                         // Lab added successfully
-                        response.sendRedirect("/nstck/labs");
+                        response.sendRedirect("/nstock/labs");
                     } else {
                         // Failed to add lab
                         response.getWriter().println("Failed to add lab");

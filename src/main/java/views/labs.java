@@ -100,7 +100,7 @@ public class labs extends HttpServlet {
                 request.setAttribute("lab", lab);
                 request.setAttribute("contentName", "editLab.jsp");
                 // Forward the request to the editLab.jsp for displaying the updated lab
-                request.getRequestDispatcher("editLab.jsp").forward(request, response);
+                request.getRequestDispatcher("base.jsp").forward(request, response);
             } else {
                 // Failed to update lab
                 response.getWriter().println("Failed to update lab. Please try again.");

@@ -49,8 +49,13 @@
         <servlet-class>views.login</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>editItem</servlet-name>
         <servlet-class>views.editItem</servlet-class>
+=======
+        <servlet-name>editLab</servlet-name>
+        <servlet-class>views.editLab</servlet-class>
+>>>>>>> 2285c934cb295adcd34fb5e03ad547c6efc9e6cd
     </servlet>
     <servlet-mapping>
         <servlet-name>dashboard</servlet-name>
@@ -101,8 +106,13 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>editItem</servlet-name>
         <url-pattern>/editItem</url-pattern>
+=======
+        <servlet-name>editLab</servlet-name>
+        <url-pattern>/editLab</url-pattern>
+>>>>>>> 2285c934cb295adcd34fb5e03ad547c6efc9e6cd
     </servlet-mapping>
     <session-config>
         <session-timeout>
