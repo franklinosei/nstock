@@ -10,8 +10,8 @@ package models;
  */
 import java.util.Date;
 
-
 public class TechnicianModel {
+
     private int managerID;
     private String firstName;
     private String lastName;
@@ -24,20 +24,31 @@ public class TechnicianModel {
     private int roleID;
     private int labID;
     private RoleModel assignedRole;
-    private LabsModel labName;
-    private LabsModel city;
-    private LabsModel region;
+    private LabsModel assignedLab;
+
     public TechnicianModel() {
         // Default constructor
     }
 
-    public TechnicianModel(RoleModel assignedRole ,LabsModel labName,LabsModel city,LabsModel region){
+    public TechnicianModel(int managerID, String firstName, String lastName, String gender, String phone, String email,
+            String address, Date dob, String photo, int roleID, int labID, RoleModel assignedRole, LabsModel assignedLab) {
         this.assignedRole = assignedRole;
-        this.labName = labName;
-        this.city = city;
-        this.region = region;
+        this.assignedLab = assignedLab;
+
+        this.managerID = managerID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.dob = dob;
+        this.photo = photo;
+        this.roleID = roleID;
+        this.labID = labID;
+
     }
-    
+
     public TechnicianModel(int managerID, String firstName, String lastName, String gender, String phone, String email,
             String address, Date dob, String photo, int roleID, int labID) {
         this.managerID = managerID;
@@ -52,31 +63,22 @@ public class TechnicianModel {
         this.roleID = roleID;
         this.labID = labID;
     }
-    
-    public void setAssignedRole(RoleModel role ){
+
+    public void setAssignedRole(RoleModel role) {
         this.assignedRole = role;
     }
-    public RoleModel getRole(){
+
+    public RoleModel getRole() {
         return this.assignedRole;
     }
-    
-    public LabsModel getLabName(){
-        return this.labName;
+
+    public LabsModel getAssignedLab() {
+        return this.assignedLab;
     }
-    public LabsModel getCity(){
-        return this.city;
+
+    public void setAssignedLab(LabsModel assignedLab) {
+        this.assignedLab = assignedLab;
     }
-    public void  setCity(LabsModel labCity){
-       this.city = labCity;
-    }
-    
-    public LabsModel getRegion(){
-        return this.region;
-    }
-    public void setRegion(LabsModel Region){
-        this.region = Region;
-    }
-    
 
     public TechnicianModel(int technicianID, String technicianName) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -85,7 +87,6 @@ public class TechnicianModel {
     public int getManagerID() {
         return managerID;
     }
-  
 
     public void setManagerID(int managerID) {
         this.managerID = managerID;
@@ -171,7 +172,6 @@ public class TechnicianModel {
         this.labID = labID;
     }
 
-   
 }
 
 //

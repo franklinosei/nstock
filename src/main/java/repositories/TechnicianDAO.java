@@ -66,33 +66,29 @@ public class TechnicianDAO {
     try {
         String query = "SELECT l.labID, l.labName, l.city, l.region, m.managerID, m.firstName, m.lastName, m.gender, m.phone, m.email, m.dob, m.photo, m.roleID, m.labID, r.roleName, r.roleID FROM labs AS l\n"
                 + "JOIN managers as m ON m.managerID = managerID\n"
-                + "JOIN roles as r ON roleName = r.roleName;";
+                + "JOIN roles as r ON m.roleID = r.roleID;";
         PreparedStatement stmt = conn.prepareStatement(query);
         ResultSet rs = stmt.executeQuery();
 
         // Assuming TechnicianModel has appropriate setters for the fetched values
         if (rs.next()) {
-            technician.labsModel.setLabID(rs.getInt("labID"));
-            technician.setLabName(rs.getString("labName"));
-            technician.setCity(rs.getString("city"));
-            technician.setRegion(rs.getString("region"));
             technician.setManagerID(rs.getInt("managerID"));
             technician.setFirstName(rs.getString("firstName"));
             technician.setLastName(rs.getString("lastName"));
             technician.setGender(rs.getString("gender"));
             technician.setPhone(rs.getString("phone"));
             technician.setEmail(rs.getString("email"));
-            technician.setDob(rs.getString("dob"));
+            technician.setAddress(rs.getString("address"));
+            technician.setDob(rs.getDate("dob"));
             technician.setPhoto(rs.getString("photo"));
             technician.setRoleID(rs.getInt("roleID"));
        
             
             RoleModel fetchedRole = new RoleModel(rs.getInt("roleID"), rs.getString("roleName"));
-            
             technician.setAssignedRole(fetchedRole);
-            LabsModel fetchLab = new LabsModel(rs.getInt("labID"),rs.getString("labName"));
             
-            
+            LabsModel fetchedLab = new LabsModel(rs.getInt("labID"),rs.getString("labName"), rs.getString("city"), rs.getString("region"));
+            technician.setAssignedLab(fetchedLab);
             
         }
 
