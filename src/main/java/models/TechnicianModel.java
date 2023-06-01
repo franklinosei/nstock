@@ -10,8 +10,8 @@ package models;
  */
 import java.util.Date;
 
-
 public class TechnicianModel {
+
     private int managerID;
     private String firstName;
     private String lastName;
@@ -23,9 +23,30 @@ public class TechnicianModel {
     private String photo;
     private int roleID;
     private int labID;
+    private RoleModel assignedRole;
+    private LabsModel assignedLab;
 
     public TechnicianModel() {
         // Default constructor
+    }
+
+    public TechnicianModel(int managerID, String firstName, String lastName, String gender, String phone, String email,
+            String address, Date dob, String photo, int roleID, int labID, RoleModel assignedRole, LabsModel assignedLab) {
+        this.assignedRole = assignedRole;
+        this.assignedLab = assignedLab;
+
+        this.managerID = managerID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.dob = dob;
+        this.photo = photo;
+        this.roleID = roleID;
+        this.labID = labID;
+
     }
 
     public TechnicianModel(int managerID, String firstName, String lastName, String gender, String phone, String email,
@@ -41,6 +62,22 @@ public class TechnicianModel {
         this.photo = photo;
         this.roleID = roleID;
         this.labID = labID;
+    }
+
+    public void setAssignedRole(RoleModel role) {
+        this.assignedRole = role;
+    }
+
+    public RoleModel getRole() {
+        return this.assignedRole;
+    }
+
+    public LabsModel getAssignedLab() {
+        return this.assignedLab;
+    }
+
+    public void setAssignedLab(LabsModel assignedLab) {
+        this.assignedLab = assignedLab;
     }
 
     public TechnicianModel(int technicianID, String technicianName) {
@@ -134,6 +171,7 @@ public class TechnicianModel {
     public void setLabID(int labID) {
         this.labID = labID;
     }
+
 }
 
 //
