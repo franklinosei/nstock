@@ -61,18 +61,60 @@
 
 <script>
     // Get the current URL
-    var currentUrl = window.location.href;
+//    var currentUrl = window.location.href;
+//
+//    // Get all the nav links inside the sidebar
+//    var navLinks = document.querySelectorAll('.sidebar .nav-link');
+//
+//    // Find the closest parent with the 'nav-item' class and add the menu-active class to it
+//    navLinks.forEach(function (link) {
+//        if (currentUrl.includes(link.href)) {
+//            var parentNavItem = link.closest('.nav-link');
+//            if (parentNavItem) {
+//                parentNavItem.classList.add('menu-active');
+//            }
+//        }
+//    });
 
-    // Get all the nav links inside the sidebar
-    var navLinks = document.querySelectorAll('.sidebar .nav-link');
 
-    // Find the closest parent with the 'nav-item' class and add the menu-active class to it
+
+    let currentUrl = window.location.href;
+
+    let toHighlight = {
+        Dashboard: ["/nstock/dashboard"],
+        "Item Management": ["/nstock/newItem", "/nstock/editItem", "/nstock/items"],
+        "Lab Management": ["/nstock/newLab", "/nstock/editLab", "/nstock/labs"],
+        "Technician Management": ["/nstock/newTechnician", "/nstock/editTechnician", "/nstock/technicians"],
+        "Profile": ["/nstock/profile", "/nstock/editProfile"],
+        "Report": ["/nstock/report"],
+        // Add more menu items and corresponding URLs as needed
+    };
+
+
+// Get all the nav links inside the sidebar
+    let navLinks = document.querySelectorAll('.sidebar .nav-link');
+
+// Find the closest parent with the 'nav-item' class and add the menu-active class to it
     navLinks.forEach(function (link) {
         if (currentUrl.includes(link.href)) {
-            var parentNavItem = link.closest('.nav-link');
+            let parentNavItem = link.closest('.nav-link');
+
             if (parentNavItem) {
                 parentNavItem.classList.add('menu-active');
             }
         }
+
+        // Check if the current URL matches any of the values in the 'toHighlight' object
+        Object.entries(toHighlight).forEach(([menuItem, urls]) => {
+            urls.forEach(url => {
+                if (currentUrl.includes(url)) {
+                    let menuItemLink = link.closest('.nav-link');
+                    if (menuItemLink && menuItemLink.innerText === menuItem) {
+                        menuItemLink.classList.add('menu-active');
+                    }
+                }
+            });
+        });
     });
+
 </script>

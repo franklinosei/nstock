@@ -9,7 +9,7 @@
         </head>
         <div class="border border-3 m-2 p-3 bg-light">
             <h3 class="heading">LABS</h3>
-            <a href="http://localhost:8080/nstock/newLab"> <button class="btn btn-outline-success float-end m-2 ">Add lab</button></a>
+            <a href="/nstock/newLab"> <button class="btn btn-outline-success float-end m-2 ">Add lab</button></a>
         <table class="table table-striped table-hover">
     <tr>
         <th>LAB NAME</th>
