@@ -6,9 +6,10 @@
             <title>Items</title>
 
         </head>
-        <h3 class="heading">ITEMS</h3>
+        <div class="shadow-lg p-4 mt-4 m-4">
+        <h3 class="heading p-2" >ITEMS</h3>
         <a href="http://localhost:8080/nstock/newItem"> <button class="btn btn-outline-success float-end m-2">Add item</button></a>
-        <table class="table table-striped table-dark">
+        <table class="table table-striped table-light table-hover box-shadow-2">
             <tr>
                 <th>ITEM NAME</th>
                 <th>DESCRIPTION</th>
@@ -36,5 +37,6 @@
                 </tr>
             </c:forEach>
         </table>
+        </div>
     </html>
 </div>

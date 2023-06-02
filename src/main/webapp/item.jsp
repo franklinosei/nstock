@@ -12,22 +12,24 @@
         <title> items</title>
     </head>
     <body>
-    <h1>Items</h1>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <!-- Add more columns as needed -->
-        </tr>
-        <c:forEach var="item" items="${items}">
-            <tr>
-                <td>${item.name}</td>
-                <td>${item.description}</td>
-                <!-- Display other item properties -->
-            </tr>
-        </c:forEach>
-    </table>
-</body>
+        <div>
+            <h3 class="p-2">Items</h3>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <!-- Add more columns as needed -->
+                </tr>
+                <c:forEach var="item" items="${items}">
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>${item.description}</td>
+                        <!-- Display other item properties -->
+                    </tr>
+                </c:forEach>
+            </table>
+        </div>
+    </body>
 </html>
 
 
