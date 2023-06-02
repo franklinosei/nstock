@@ -7,7 +7,7 @@
             <title>Labs</title>
 
         </head>
-        <div class="shadow-lg mt-4 p-3 bg-light">
+        <div class="shadow-lg mt-4 p-3 m-4 bg-light">
             <h3 class="heading">LABS</h3>
             <a href="/nstock/newLab"> <button class="btn btn-outline-success float-end m-2 ">Add lab</button></a>
             <table class="table table-striped table-hover">

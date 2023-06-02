@@ -5,7 +5,39 @@
 --%>
 
 
-<h2>Dashboard</h2>
-<p>This is the content of the Dashboard page.</p>
+<h2 class="mt-3 p-3">Dashboard</h2>
+<div class="row shadow-lg p-4 m-3 align-items-center">
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body ">
+        <h5 class="card-title align-middle ">TOTAL LABS</h5>
+        <hr>
+        <p class="card-text align-middle">10</p>
+        <a href="/nstock/labs" class="btn btn-outline-success">See Labs</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">TOTAL TECHNICIANS</h5>
+        <hr>
+        <p class="card-text">20</p>
+        <a href="/nstock/technician" class="btn btn-outline-success">See Technicians</a>
+      </div>
+    </div>
+  </div>
+     <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">TOTAL ITEMS</h5>
+        <hr>
+        <p class="card-text align-items-center">200</p>
+        <a href="/nstock/items" class="btn btn-outline-success">See Items</a>
+      </div>
+    </div>
+  </div>
+    
+</div>
 
 
