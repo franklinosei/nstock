@@ -70,7 +70,7 @@ public class newItem extends HttpServlet {
                 newItem.setFaulty(isFaulty);
                 newItem.setTypeID(typeID);
                 
-                newItem.setLabID(labID != null ? Integer.parseInt(name) : userData.getLabID());
+                newItem.setLabID(labID != null ? Integer.parseInt(labID) : userData.getLabID());
                 
                 newItem.setManagerID(managerID);
 //                newItem.setSpecID(specID);

@@ -37,9 +37,9 @@ public class Authenticator {
         try {
 
             AuthenticationModel user = auth.findUserByEmail(email);
-            
+
             if (user != null) {
-               
+
                 if (Utils.comparePasswords(password, user.getPassword())) {
 //                    Database connection here
                     DB_Connection dbConnection = new DB_Connection();
@@ -64,6 +64,17 @@ public class Authenticator {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    public boolean userAlreadyExists(String email) throws Exception {
+        try {
+
+            AuthenticationModel user = auth.findUserByEmail(email);
+
+            return user != null;
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
         }
     }
 

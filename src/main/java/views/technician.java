@@ -15,6 +15,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import models.TechnicianModel;
 import repositories.TechnicianDAO;
 import utils.SessionManager;
@@ -34,10 +36,12 @@ public class technician extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private List<String> allowedRoles = Arrays.asList("Manager");
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         RequestDispatcher rd = request.getRequestDispatcher("base.jsp");
         request.setAttribute("contentName", "technician.jsp");
         rd.forward(request, response);
@@ -75,7 +79,13 @@ public class technician extends HttpServlet {
             // Retrieve the associated username if needed
             TechnicianModel user = SessionManager.getUser(sessionId);
             request.setAttribute("user", user);
-            
+
+            //            check if user has access to this page
+            if (!(this.allowedRoles.contains(user.getRole().getRoleName()))) {
+                response.sendRedirect("/nstock/unauthorized");
+                return;
+            }
+
             Connection connection = null;
             request.setAttribute("contentName", "technician.jsp");
             try {
@@ -109,7 +119,7 @@ public class technician extends HttpServlet {
             // User is not authenticated, redirect to the login page or return an error response
             response.sendRedirect("/nstock/login");
         }
-        
+
     }
 
     /**

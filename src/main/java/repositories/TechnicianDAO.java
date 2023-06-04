@@ -112,7 +112,10 @@ public class TechnicianDAO {
 
     public TechnicianModel getTechnicianByEmail(String email) throws Exception {
         try {
-            String query = "SELECT * FROM managers WHERE email = ? AND deleted = 0";
+            String query = "SELECT l.labID, l.labName, l.city, l.region, m.address, m.managerID, m.firstName, m.lastName, m.gender, m.phone, m.email, m.dob, m.photo, m.roleID, m.labID, r.roleName, r.roleID FROM managers AS m\n"
+                    + "JOIN labs as l ON m.labID = l.labID\n"
+                    + "JOIN roles as r ON m.roleID = r.roleID WHERE m.email = ? AND m.deleted = 0;";
+            
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, email);
             ResultSet rs = stmt.executeQuery();
@@ -130,6 +133,16 @@ public class TechnicianDAO {
                 int managerID = rs.getInt("managerID");
 
                 TechnicianModel technician = new TechnicianModel(managerID, firstName, lastName, gender, phone, email, address, dob, photo, roleID, labID);
+                
+                
+                RoleModel fetchedRole = new RoleModel(rs.getInt("roleID"), rs.getString("roleName"));
+                technician.setAssignedRole(fetchedRole);
+
+                LabsModel fetchedLab = new LabsModel(rs.getInt("labID"), rs.getString("labName"), rs.getString("city"), rs.getString("region"));
+                technician.setAssignedLab(fetchedLab);
+
+                
+                
                 stmt.close();
                 rs.close();
                 return technician;

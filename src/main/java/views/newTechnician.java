@@ -17,6 +17,8 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import models.LabsModel;
 import models.TechnicianModel;
 import repositories.LabDAO;
@@ -37,6 +39,8 @@ public class newTechnician extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private List<String> allowedRoles = Arrays.asList("Manager");
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -60,6 +64,12 @@ public class newTechnician extends HttpServlet {
             // Retrieve the associated username if needed
             TechnicianModel user = SessionManager.getUser(sessionId);
             request.setAttribute("user", user);
+
+            //            check if user has access to this page
+            if (!(this.allowedRoles.contains(user.getRole().getRoleName()))) {
+                response.sendRedirect("/nstock/unauthorized");
+                return;
+            }
 
             Connection connection = null;
             request.setAttribute("contentName", "newTechnician.jsp");
@@ -150,11 +160,16 @@ public class newTechnician extends HttpServlet {
             request.setAttribute("user", user);
 
             Connection connection = null;
-            request.setAttribute("contentName", "technician.jsp");
+            
+            request.setAttribute("contentName", "newTechnician.jsp");
 
             try {
                 DB_Connection dbConnection = new DB_Connection();
                 connection = dbConnection.connect();
+                
+                LabDAO labsDAO = new LabDAO(connection);
+                List<LabsModel> labs = labsDAO.getAllLabs();
+                request.setAttribute("labs", labs);
 
                 TechnicianModel techieData = (TechnicianModel) request.getAttribute("user");
 
@@ -177,6 +192,14 @@ public class newTechnician extends HttpServlet {
                 //Save technician creds
 //            working
                 Authenticator authenticator = new Authenticator();
+
+                //                check if user already exists
+                if (authenticator.userAlreadyExists(email)) {
+                    request.setAttribute("errorMessage", "User with email already exists");
+                    request.getRequestDispatcher("base.jsp").forward(request, response);
+                    return;
+                }
+
                 int result = authenticator.createNewCredentials(email, password);
 
                 TechnicianModel newTechnicianData = new TechnicianModel(managerID, firstName, lastName, gender, phone, email, address, dob, photo, roleID, labID);
