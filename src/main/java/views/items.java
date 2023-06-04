@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import models.TechnicianModel;
 import utils.SessionManager;
 
 public class items extends HttpServlet {
@@ -34,13 +35,23 @@ public class items extends HttpServlet {
 
         if (sessionId != null && SessionManager.isValidSession(sessionId)) {
 
+            TechnicianModel user = SessionManager.getUser(sessionId);
+            request.setAttribute("user", user);
+
             // Get the list of items from the database
             Connection connection = null;
+
             try {
                 DB_Connection dbConnection = new DB_Connection();
                 connection = dbConnection.connect();
                 ItemDAO itemDAO = new ItemDAO(connection);
-                List<ItemsModel> itemsList = itemDAO.getAllItems();
+
+                List<ItemsModel> itemsList = null;
+                if (user.getRole().getRoleName() == "Manager") {
+                    itemsList = itemDAO.getAllItems();
+                } else {
+                    itemsList = itemDAO.getAllItemsPerLabID(user.getLabID());
+                }
 
                 // Set the list of items as a request attribute
                 request.setAttribute("items", itemsList);

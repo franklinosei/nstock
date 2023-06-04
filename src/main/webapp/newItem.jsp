@@ -47,7 +47,7 @@
            
              <c:if test="${not empty labList}">
                   <br>
-            <select class="form-control" required="true" name="itemType">
+            <select class="form-control" required="true" name="labID">
                 <option value="">Assigned Lab</option>
                     <c:forEach var="lab" items="${labList}">
                         <option value=${lab.getLabID()}>${lab.getLabName()}</option>
