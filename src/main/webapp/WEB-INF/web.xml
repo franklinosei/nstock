@@ -56,6 +56,10 @@
         <servlet-name>editLab</servlet-name>
         <servlet-class>views.editLab</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>unauthorized</servlet-name>
+        <servlet-class>views.unauthorized</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dashboard</servlet-name>
         <url-pattern>/dashboard</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>editLab</servlet-name>
         <url-pattern>/editLab</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>unauthorized</servlet-name>
+        <url-pattern>/unauthorized</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

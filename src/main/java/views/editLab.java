@@ -13,7 +13,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
 import models.LabsModel;
+import models.TechnicianModel;
 import repositories.LabDAO;
 import utils.SessionManager;
 
@@ -41,6 +44,9 @@ public class editLab extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+     private List<String> allowedRoles = Arrays.asList("Manager");
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -59,7 +65,16 @@ public class editLab extends HttpServlet {
 
         if (sessionId != null && SessionManager.isValidSession(sessionId)) {
             int labID = Integer.parseInt(request.getParameter("id"));
-            // Update the lab information in the data source
+            
+            TechnicianModel user = SessionManager.getUser(sessionId);
+            request.setAttribute("user", user);
+
+            //            check if user has access to this page
+            if (!(this.allowedRoles.contains(user.getRole().getRoleName()))) {
+                response.sendRedirect("/nstock/unauthorized");
+                   return;
+            }
+            
             Connection connection = null;
             try {
                 DB_Connection dbConnection = new DB_Connection();

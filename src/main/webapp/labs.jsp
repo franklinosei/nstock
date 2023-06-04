@@ -6,16 +6,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <title>labs</title>
+  
 </head>
 
 <h2 class="p-2">Add Lab</h2>
-<div class="m-2">
+<div class="mt-4 shadow-lg me-4">
     <form class="form-group">
         <div class="flex">
             <input class="input-group" name="labName" id="labname" placeholder="Lab Name"> 

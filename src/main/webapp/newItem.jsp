@@ -3,7 +3,7 @@
 
 
 <div>
-    <div class="border border-3 m-3" >
+    <div class="shadow-lg m-3" >
         <h3 class="p-3">Add Item</h3>
 
         <form class="form-group m-3" method="post" action="/nstock/newItem">

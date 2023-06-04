@@ -4,32 +4,21 @@
  */
 package views;
 
-import controllers.DB_Connection;
-import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import models.ItemsModel;
-import models.LabsModel;
 import models.TechnicianModel;
-import repositories.ItemDAO;
-import repositories.LabDAO;
-import repositories.TechnicianDAO;
 import utils.SessionManager;
 
 /**
  *
  * @author iamdveloper
  */
-public class dashboard extends HttpServlet {
+public class unauthorized extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,14 +29,11 @@ public class dashboard extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private List<String> allowedRoles = Arrays.asList("Technician", "Manager");
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        // Retrieve the session ID from the session cookie
         String sessionId = null;
+
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
@@ -62,58 +48,14 @@ public class dashboard extends HttpServlet {
         if (sessionId != null && SessionManager.isValidSession(sessionId)) {
             // User is authenticated, proceed with the protected route logic
             // Retrieve the associated username if needed
-            TechnicianModel user = SessionManager.getUser(sessionId);
-            request.setAttribute("user", user);
+            TechnicianModel userData = SessionManager.getUser(sessionId);
+            request.setAttribute("user", userData);
 
-//            check if user has access to this page
-            if (!(this.allowedRoles.contains(user.getRole().getRoleName()))) {
-                response.sendRedirect("/nstock/unauthorized");
-                   return;
-            }
-
-//            get all labs, technicians and items
-            // Get the list of items from the database
-            Connection connection = null;
-            try {
-                DB_Connection dbConnection = new DB_Connection();
-                connection = dbConnection.connect();
-                ItemDAO itemDAO = new ItemDAO(connection);
-                LabDAO labsDAO = new LabDAO(connection);
-                TechnicianDAO techDAO = new TechnicianDAO(connection);
-                
-                List<ItemsModel> itemsList = itemDAO.getAllItems();
-                List<LabsModel> labsList = labsDAO.getAllLabs();
-                List<TechnicianModel> techList = techDAO.getAllTechnicians();
-
-                // Set the list of items as a request attribute
-                request.setAttribute("items", itemsList);
-                request.setAttribute("labs", labsList);
-                request.setAttribute("technicians", techList);
-                
-                RequestDispatcher rd = request.getRequestDispatcher("base.jsp");
-                
-                request.setAttribute("contentName", "dashboard.jsp");
-                rd.forward(request, response);
-                
-            } catch (Exception e) {
-                e.printStackTrace(); // Print the full stack trace
-                response.getWriter().println("An error occurred: " + e.getMessage()); // Print the error message
-            } finally {
-                // Close the database connection
-                if (connection != null) {
-                    try {
-                        connection.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-            
+          request.getRequestDispatcher("unauthorized.jsp").forward(request, response);
         } else {
             // User is not authenticated, redirect to the login page or return an error response
-            response.sendRedirect("/nstock/login");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

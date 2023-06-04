@@ -40,8 +40,17 @@
                 <input  type="submit" value="Save" class="btn btn-outline-success" >
             </div>-->
 <!-- ======= -->
-<div class="center-div mt-5 mb-5">
+<div class="center-div mt-5 mb-5 ">
     <div class="container shadow p-4 rounded w-70">
+
+        <c:if test="${not empty errorMessage}">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                ${errorMessage}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </c:if>
+
+
         <h1>Add Technician</h1>
         <hr>
         <form action="/nstock/newTechnician" method="post">
