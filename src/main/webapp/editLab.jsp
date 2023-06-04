@@ -2,10 +2,9 @@
 
 
 <div>
-    <h1>Edit Lab</h1>
 
     <!-- NEW LAB WITH BOOTSTRAP -->
-    <div class="border border-4 m-3 p-3">
+    <div class="shadow-lg mt-4 m-3 p-3">
         <h3 class="p-4">Edit Lab</h3>
         <form action="/nstock/editLab" method="POST">
             <%-- Include hidden input field to pass the lab ID for update --%>
@@ -13,17 +12,17 @@
             <div class="input-group">
                 <!--<label for="labID">Lab ID:</label>-->
                 <!--<input class="form-control" type="text" name="labID" value="<%= request.getParameter("id") %>">&nbsp;&nbsp;-->
-                <label for="labName">Lab Name:</label>
-                <input class="form-control" type="text" name="labName" value="${lab.getLabName()}">
+                <label for="labName" class="me-2">Lab Name:</label>
+                <input class="form-control me-2" type="text" name="labName" value="${lab.getLabName()}">
             </div><br>
             <div class="input-group">
-                <label for="city">City:</label>
-                <input class="form-control" type="text" name="city" value="${lab.getCity()}">&nbsp;&nbsp;
-                <label for="region">Region:</label>
+                <label for="city" class="me-2">City:</label>
+                <input class="form-control me-2" type="text" name="city" value="${lab.getCity()}">
+                <label for="region" class="me-2">Region:</label>
                 <input class="form-control" type="text" name="region" value="${lab.getRegion()}">
             </div><br>
             <div class="input-group">
-                <label for="photo">Photo:</label>
+                <label for="photo" class="me-2">Photo:</label>
                 <input class="form-control" type="text" name="photo" value="${lab.getPhoto()}">
             </div>
             <input class="btn btn-outline-primary mt-4" type="submit" value="Update">

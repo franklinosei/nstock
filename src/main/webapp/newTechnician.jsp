@@ -40,7 +40,7 @@
                 <input  type="submit" value="Save" class="btn btn-outline-success" >
             </div>-->
 <!-- ======= -->
-<div class="center-div mt-5 mb-5">
+<div class="center-div mt-5 mb-5 ">
     <div class="container shadow p-4 rounded w-70">
         <h1>Add Technician</h1>
         <hr>
