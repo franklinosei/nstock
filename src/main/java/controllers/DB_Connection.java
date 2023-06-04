@@ -17,7 +17,7 @@ public class DB_Connection {
        private static Connection conn = null;
 
 
-    String password = "password";
+    String password = "123@Moako";
     String username = "root";
     String url = "jdbc:mysql://localhost:3306/nstock?autoReconnect=true&useSSL=false";
 

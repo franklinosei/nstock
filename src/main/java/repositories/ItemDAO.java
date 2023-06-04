@@ -47,24 +47,62 @@ public class ItemDAO {
         }
     }
 
-    public int updateItem(ItemsModel item) throws Exception {
-        try {
-            String updateQuery = "UPDATE items SET name = ?, description = ?, faulty = ?, photo = ? WHERE itemID = ?";
-            PreparedStatement stmt = conn.prepareStatement(updateQuery);
-            stmt.setString(1, item.getName());
-            stmt.setString(2, item.getDescription());
-            stmt.setBoolean(3, item.isFaulty());
-            stmt.setString(4, item.getPhoto());
-            stmt.setInt(5, item.getItemID());
+   public int updateItem(ItemsModel item) throws Exception {
+    try {
+        String updateQuery = "UPDATE items SET name = ?, description = ?, faulty = ?, photo = ? WHERE itemID = ?";
+        PreparedStatement stmt = conn.prepareStatement(updateQuery);
+        stmt.setString(1, item.getName());
+        stmt.setString(2, item.getDescription());
+        stmt.setBoolean(3, item.isFaulty());
+        stmt.setString(4, item.getPhoto());
+        stmt.setInt(5, item.getItemID());
 
-            int rowsAffected = stmt.executeUpdate();
+        int rowsAffected = stmt.executeUpdate();
+        stmt.close();
+        return rowsAffected;
+    } catch (SQLException e) {
+        throw new Exception(e.getMessage());
+    }
+}
+
+
+
+    
+    public ItemsModel getItemById(int itemId) throws Exception {
+        try {
+            String query = "SELECT * FROM items WHERE itemID = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, itemId);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int itemID = rs.getInt("itemID");
+                String name = rs.getString("name");
+                String description = rs.getString("description");
+                boolean faulty = rs.getBoolean("faulty");
+                int typeID = rs.getInt("typeID");
+                String itemscol = rs.getString("itemscol");
+                String photo = rs.getString("photo");
+                String serialNumber = rs.getString("serialNumber");
+                int labID = rs.getInt("labID");
+                int managerID = rs.getInt("managerID");
+                int specID = rs.getInt("specID");
+                boolean deleted = rs.getBoolean("deleted");
+
+//                ItemsModel item = new ItemsModel(itemID, name, description, faulty, typeID, itemscol, photo, serialNumber, labID, managerID, specID, deleted);
+//                return item;
+            }
+
+            rs.close();
             stmt.close();
-            return rowsAffected;
         } catch (SQLException e) {
             throw new Exception(e.getMessage());
         }
-    }
 
+        return null; // Item not found
+    }
+    
     public int deleteItem(ItemsModel item) throws Exception {
         try {
             String updateQuery = "UPDATE items SET deleted = ? WHERE itemID = ?";
