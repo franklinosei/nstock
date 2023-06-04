@@ -11,7 +11,7 @@
 </head>
 
 <h2 class="p-2">Add Lab</h2>
-<div class="mt-4 shadow-lg">
+<div class="mt-4 shadow-lg me-4">
     <form class="form-group">
         <div class="flex">
             <input class="input-group" name="labName" id="labname" placeholder="Lab Name"> 
