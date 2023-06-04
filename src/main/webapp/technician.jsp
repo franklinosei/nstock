@@ -81,14 +81,14 @@
                 <div class="me-4">
 
                     <div class="card shadow" style="width: 18rem;">
-                        <img src="https://unsplash.com/photos/iEEBWgY_6lA/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjg1NDUwODY4fA&force=true&w=640" class="card-img-top" alt="...">
+                        <img src=${techie.getPhoto()} class="card-img-top" alt="...">
                         <div class="card-body">
                             <div class="d-flex">
                                 <h6 class="card-text me-2">${techie.getFirstName()}</h6>
                                 <h6 class="card-text">${techie.getLastName()}</h6>
                             </div>
                             
-                            <div>
+                            <div class="d-flex">
                                  <h6 class="card-text me-2">Assigned Lab: </h6>
                                 <h6 class="card-text">${techie.getAssignedLab().getLabName()}</h6>
                             </div>
