@@ -14,17 +14,22 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.Arrays;
+import java.util.List;
 import models.LabsModel;
+import models.TechnicianModel;
 import repositories.LabDAO;
 import utils.SessionManager;
 
 public class newLab extends HttpServlet {
-    
+
+    private List<String> allowedRoles = Arrays.asList("Manager");
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-        
+
         String sessionId = null;
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
@@ -35,9 +40,18 @@ public class newLab extends HttpServlet {
                 }
             }
         }
-        
+
         if (sessionId != null && SessionManager.isValidSession(sessionId)) {
-            
+
+            TechnicianModel user = SessionManager.getUser(sessionId);
+            request.setAttribute("user", user);
+
+            //            check if user has access to this page
+            if (!(this.allowedRoles.contains(user.getRole().getRoleName()))) {
+                response.sendRedirect("/nstock/unauthorized");
+                return;
+            }
+
             RequestDispatcher rd = request.getRequestDispatcher("base.jsp");
 
 //        Content name to display
@@ -46,7 +60,7 @@ public class newLab extends HttpServlet {
 
             // Handle POST request to add a new lab
             if (request.getMethod().equalsIgnoreCase("POST")) {
-                
+
                 String labName = request.getParameter("labName");
                 String city = request.getParameter("city");
                 String region = request.getParameter("region");
@@ -63,9 +77,9 @@ public class newLab extends HttpServlet {
                 try {
                     DB_Connection dbConnection = new DB_Connection();
                     LabDAO labDAO = new LabDAO(dbConnection.connect());
-                    
+
                     int rowsAffected = labDAO.insertLab(lab);
-                    
+
                     if (rowsAffected > 0) {
                         // Lab added successfully
                         response.sendRedirect("/nstock/labs");
@@ -82,25 +96,25 @@ public class newLab extends HttpServlet {
                 // Render the form to add a new lab
                 request.getRequestDispatcher("base.jsp").forward(request, response);
             }
-            
+
         } else {
             response.sendRedirect("/nstock/login");
         }
-        
+
     }
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-    
+
     @Override
     public String getServletInfo() {
         return "Short description";
