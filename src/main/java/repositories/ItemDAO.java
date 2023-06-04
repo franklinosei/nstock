@@ -82,7 +82,6 @@ public class ItemDAO {
                 String description = rs.getString("description");
                 boolean faulty = rs.getBoolean("faulty");
                 int typeID = rs.getInt("typeID");
-                String itemscol = rs.getString("itemscol");
                 String photo = rs.getString("photo");
                 String serialNumber = rs.getString("serialNumber");
                 int labID = rs.getInt("labID");
@@ -90,8 +89,8 @@ public class ItemDAO {
                 int specID = rs.getInt("specID");
                 boolean deleted = rs.getBoolean("deleted");
 
-//                ItemsModel item = new ItemsModel(itemID, name, description, faulty, typeID, itemscol, photo, serialNumber, labID, managerID, specID, deleted);
-//                return item;
+                ItemsModel item = new ItemsModel(itemID, photo, name, description, faulty, typeID, serialNumber, labID, managerID, specID, deleted);
+                return item;
             }
 
             rs.close();
@@ -137,8 +136,9 @@ public class ItemDAO {
                 int specID = rs.getInt("specID");
                 String createdAt = rs.getString("createdAt");
                 String updatedAt = rs.getString("updatedAt");
+                String photo = rs.getString("photo");
 
-                ItemsModel item = new ItemsModel(itemID, name, description, faulty, typeID, serialNumber, labID, managerID, specID, false);
+                ItemsModel item = new ItemsModel(itemID,photo, name, description, faulty, typeID, serialNumber, labID, managerID, specID, false);
 
                 itemsList.add(item);
             }

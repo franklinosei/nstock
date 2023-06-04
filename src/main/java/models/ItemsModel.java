@@ -18,7 +18,7 @@ public class ItemsModel {
         // Default constructor
     }
 
-    public ItemsModel(int itemID, String name, String description, boolean faulty, int typeID, String serialNumber, int labID, int managerID, int specID, boolean deleted) {
+    public ItemsModel(int itemID, String photo, String name, String description, boolean faulty, int typeID, String serialNumber, int labID, int managerID, int specID, boolean deleted) {
     this.itemID = itemID;
     this.name = name;
     this.description = description;
@@ -29,6 +29,7 @@ public class ItemsModel {
     this.managerID = managerID;
     this.specID = specID;
     this.deleted = deleted;
+    this.photo = photo;
 }
 
 
