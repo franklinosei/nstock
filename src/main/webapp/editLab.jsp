@@ -6,7 +6,7 @@
     <!-- NEW LAB WITH BOOTSTRAP -->
     <div class="shadow-lg mt-4 m-3 p-3">
         <h3 class="p-4">Edit Lab</h3>
-        <form action="/nstock/editLab" method="POST">
+        <form action="/nstock/editItem" method="POST">
             <%-- Include hidden input field to pass the lab ID for update --%>
             <input type="hidden" name="labID" value=${lab.getLabID()}>
             <div class="input-group">

@@ -47,27 +47,24 @@ public class ItemDAO {
         }
     }
 
-   public int updateItem(ItemsModel item) throws Exception {
-    try {
-        String updateQuery = "UPDATE items SET name = ?, description = ?, faulty = ?, photo = ? WHERE itemID = ?";
-        PreparedStatement stmt = conn.prepareStatement(updateQuery);
-        stmt.setString(1, item.getName());
-        stmt.setString(2, item.getDescription());
-        stmt.setBoolean(3, item.isFaulty());
-        stmt.setString(4, item.getPhoto());
-        stmt.setInt(5, item.getItemID());
+    public int updateItem(ItemsModel item) throws Exception {
+        try {
+            String updateQuery = "UPDATE items SET name = ?, description = ?, faulty = ?, photo = ? WHERE itemID = ?";
+            PreparedStatement stmt = conn.prepareStatement(updateQuery);
+            stmt.setString(1, item.getName());
+            stmt.setString(2, item.getDescription());
+            stmt.setBoolean(3, item.isFaulty());
+            stmt.setString(4, item.getPhoto());
+            stmt.setInt(5, item.getItemID());
 
-        int rowsAffected = stmt.executeUpdate();
-        stmt.close();
-        return rowsAffected;
-    } catch (SQLException e) {
-        throw new Exception(e.getMessage());
+            int rowsAffected = stmt.executeUpdate();
+            stmt.close();
+            return rowsAffected;
+        } catch (SQLException e) {
+            throw new Exception(e.getMessage());
+        }
     }
-}
 
-
-
-    
     public ItemsModel getItemById(int itemId) throws Exception {
         try {
             String query = "SELECT * FROM items WHERE itemID = ?";
@@ -82,7 +79,6 @@ public class ItemDAO {
                 String description = rs.getString("description");
                 boolean faulty = rs.getBoolean("faulty");
                 int typeID = rs.getInt("typeID");
-                String itemscol = rs.getString("itemscol");
                 String photo = rs.getString("photo");
                 String serialNumber = rs.getString("serialNumber");
                 int labID = rs.getInt("labID");
@@ -90,8 +86,8 @@ public class ItemDAO {
                 int specID = rs.getInt("specID");
                 boolean deleted = rs.getBoolean("deleted");
 
-//                ItemsModel item = new ItemsModel(itemID, name, description, faulty, typeID, itemscol, photo, serialNumber, labID, managerID, specID, deleted);
-//                return item;
+                ItemsModel item = new ItemsModel(itemID, photo, name, description, faulty, typeID, serialNumber, labID, managerID, specID, deleted);
+                return item;
             }
 
             rs.close();
@@ -102,7 +98,7 @@ public class ItemDAO {
 
         return null; // Item not found
     }
-    
+
     public int deleteItem(ItemsModel item) throws Exception {
         try {
             String updateQuery = "UPDATE items SET deleted = ? WHERE itemID = ?";
@@ -137,8 +133,9 @@ public class ItemDAO {
                 int specID = rs.getInt("specID");
                 String createdAt = rs.getString("createdAt");
                 String updatedAt = rs.getString("updatedAt");
+                String photo = rs.getString("photo");
 
-                ItemsModel item = new ItemsModel(itemID, name, description, faulty, typeID, serialNumber, labID, managerID, specID, false);
+                ItemsModel item = new ItemsModel(itemID, photo, name, description, faulty, typeID, serialNumber, labID, managerID, specID, false);
 
                 itemsList.add(item);
             }
@@ -151,7 +148,43 @@ public class ItemDAO {
         }
     }
 
-   
+    public ArrayList<ItemsModel> getAllItemsPerLabID(int id) throws Exception {
+        try {
+            ArrayList<ItemsModel> itemsList = new ArrayList<>();
+            String query = "SELECT * FROM items WHERE deleted = 0 AND labID= ?";
+
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, id);
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int itemID = rs.getInt("itemID");
+                String name = rs.getString("name");
+                String description = rs.getString("description");
+                boolean faulty = rs.getBoolean("faulty");
+                int typeID = rs.getInt("typeID");
+                String serialNumber = rs.getString("serialNumber");
+                int labID = rs.getInt("labID");
+                int managerID = rs.getInt("managerID");
+                int specID = rs.getInt("specID");
+                String createdAt = rs.getString("createdAt");
+                String updatedAt = rs.getString("updatedAt");
+                String photo = rs.getString("photo");
+
+                ItemsModel item = new ItemsModel(itemID, photo, name, description, faulty, typeID, serialNumber, labID, managerID, specID, false);
+
+                itemsList.add(item);
+            }
+
+            stmt.close();
+            rs.close();
+            return itemsList;
+        } catch (SQLException e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
     public List<SpecificationModel> getAllSpecification() throws Exception {
         try {
             List<SpecificationModel> specList = new ArrayList<>();
@@ -180,9 +213,8 @@ public class ItemDAO {
             throw new Exception(e.getMessage());
         }
     }
-    
-    
-     public List<ItemTypeModel> getAllItemTypes() throws Exception {
+
+    public List<ItemTypeModel> getAllItemTypes() throws Exception {
         try {
             List<ItemTypeModel> typesList = new ArrayList<>();
             String query = "SELECT * FROM item_types";
@@ -190,7 +222,7 @@ public class ItemDAO {
             ResultSet rs = stmt.executeQuery(query);
 
             while (rs.next()) {
-               
+
                 int typeID = rs.getInt("typeID");
                 String typeName = rs.getString("typeName");
 
@@ -202,7 +234,7 @@ public class ItemDAO {
 
             stmt.close();
             rs.close();
-            
+
             return typesList;
         } catch (SQLException e) {
             throw new Exception(e.getMessage());
