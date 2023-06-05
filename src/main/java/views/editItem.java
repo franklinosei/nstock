@@ -17,7 +17,6 @@ import java.util.List;
 import models.ItemsModel;
 import models.TechnicianModel;
 import repositories.ItemDAO;
-import repositories.LabDAO;
 
 public class editItem extends HttpServlet {
 
@@ -126,7 +125,13 @@ public class editItem extends HttpServlet {
 
                 ItemDAO itemDAO = new ItemDAO(connection);
                 
-                ItemsModel item = new ItemsModel(itemID, photo, labId, itemDescription, isFaulty, labID, itemName, labID, labID, itemID, isFaulty);
+                ItemsModel item = new ItemsModel();
+                item.setItemID(itemID);
+                item.setName(itemName);
+                item.setDescription(itemDescription);
+                item.setFaulty(isFaulty);
+                item.setLabID(labID);
+                item.setPhoto(photo);
 
                 int result = itemDAO.updateItem(item);
 
