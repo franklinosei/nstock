@@ -48,11 +48,7 @@ public class editItem extends HttpServlet {
 
             int itemId = Integer.parseInt(request.getParameter("id"));
 
-            //            check if user has access to this page
-            if (!(this.allowedRoles.contains(user.getRole().getRoleName()))) {
-                response.sendRedirect("/nstock/unauthorized");
-                return;
-            }
+          
 
             Connection connection = null;
 
@@ -126,7 +122,7 @@ public class editItem extends HttpServlet {
                 ItemDAO itemDAO = new ItemDAO(connection);
                 
                 ItemsModel item = new ItemsModel();
-                item.setItemID(itemID);
+                item.setItemID(itemID); 
                 item.setName(itemName);
                 item.setDescription(itemDescription);
                 item.setFaulty(isFaulty);
